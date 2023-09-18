@@ -89,9 +89,9 @@ input {
     width:calc(63% - 60px);
   }
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 500px) {
   .search-form {
-
+    flex-direction: column;
   }
   .search-form__input {
     width:calc(63% - 60px);

@@ -35,5 +35,35 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  padding: 10px 0 14px 12px;
+  padding: 0px 0 14px 12px;
+}
+.card__container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+.card__button{
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  background-color: white;
+  margin: 6px 6px 14px 0;
+  padding: 0;
+  background-image: url(../../../images/checkbox.svg);
+  
+}
+.card__button-active{
+  background-image: url(../../../images/checkbox-active.svg);
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  background-color: white;
+  margin: 6px 6px 14px 0;
+  padding: 0;
+  
 }

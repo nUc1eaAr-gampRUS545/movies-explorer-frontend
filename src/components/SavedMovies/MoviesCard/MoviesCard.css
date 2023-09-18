@@ -37,3 +37,22 @@
   line-height: normal;
   padding: 10px 0 14px 12px;
 }
+.card__button-delete{
+  background-image: url(../../../images/exit-menu.svg);
+  width: 30px;
+  background-size: 50%;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  background-color: white;
+  margin: 3px 6px 14px 0;
+  padding: 0;
+  
+}
+.card__container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
