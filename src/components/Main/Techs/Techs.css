@@ -50,6 +50,11 @@
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+  transition: all .5s linear;
+  cursor: pointer;
+}
+.techs__cell:hover{
+  opacity: 0.5;
 }
 @media screen and (max-width: 1000px) {
   .techs {

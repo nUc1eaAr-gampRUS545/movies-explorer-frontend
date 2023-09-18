@@ -29,6 +29,10 @@
   letter-spacing: -1.2px;
   border: 0;
   background-color: transparent;
+  transition: all 0.2s linear;
+}
+.nav-tab__button:hover{
+transform: translate(0.1em,-0.1em);
 }
 @media screen and (max-width:768px){
   .nav-tab{

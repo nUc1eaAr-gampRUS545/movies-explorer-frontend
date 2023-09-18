@@ -1,4 +1,13 @@
-.menu {
+.menu{
+  width: 100vw;
+  height: 100vh;
+  position:absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000098;
+  z-index: 9;
+}
+.menu__container {
   width: 70%;
   height: 100vh;
   background-color: white;
@@ -31,7 +40,12 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  border-bottom: 3px solid transparent;
   text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+.menu__link:hover{
+  border-bottom: 3px solid black;
 }
 .menu__acaunt {
   width: 100px;
