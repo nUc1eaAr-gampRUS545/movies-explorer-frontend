@@ -1,0 +1,99 @@
+input {
+  outline: none;
+}
+.search-form {
+  max-width: 1140px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  margin: 70px auto;
+  display: flex;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}
+.search-form__group{
+  display: flex;
+  flex-direction: row;
+
+}
+.search-form__input {
+  width:calc(80% - 100px);
+  border: 0;
+  flex-shrink: 0;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: "Inter";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 111.111%;
+  padding: 0;
+}
+.search-form__lupa {
+  width: 34px;
+  min-height: 34px;
+  margin: 19px 10px 19px 19px;
+}
+.search-form__button {
+    background-color: transparent;
+    border: 0;
+    width: 120px;
+    height: 34px;
+    background-image: url(../../../images/search-form/lupa2.svg);
+    background-repeat: no-repeat;
+    margin: auto 0;
+    padding: 0 19px 0 0;
+    border-right: 1px solid #cbcbcb;
+}
+.search-form__span {
+  color: #000;
+  font-family: "Inter";
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 138.462%;
+  margin: auto 30px auto 14px;
+  height: 21px;
+}
+@media screen and (max-width: 1100px) {
+  .search-form {
+
+  }
+  .search-form__input {
+    width:calc(80% - 80px);
+  }
+}
+@media screen and (max-width: 1000px) {
+  .search-form {
+
+  }
+  .search-form__input {
+    width:calc(70% - 70px);
+  }
+}
+@media screen and (max-width: 900px) {
+  .search-form {
+    
+  }
+  .search-form__input {
+    width:calc(63% - 60px);
+  }
+}
+@media screen and (max-width: 600px) {
+  .search-form {
+
+  }
+  .search-form__input {
+    width:calc(63% - 60px);
+  }
+}
+@media screen and (max-width: 300px) {
+  .search-form {
+
+  }
+  .search-form__input {
+    width:calc(63% - 60px);
+  }
+}
