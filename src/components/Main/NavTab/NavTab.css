@@ -12,6 +12,11 @@
   font-weight: 400;
   line-height: 166.667%;
   letter-spacing: -1.2px;
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+.nav-tab__span:hover{
+  color: #3456f3;
 }
 .nav-tab__link {
   display: flex;
@@ -34,6 +39,7 @@
 .nav-tab__button:hover{
 transform: translate(0.1em,-0.1em);
 }
+
 @media screen and (max-width:768px){
   .nav-tab{
     max-width: 668px;

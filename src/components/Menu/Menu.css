@@ -1,7 +1,10 @@
-.menu{
+
+
+@media screen and (max-width:768px){
+  .menu{
   width: 100vw;
   height: 100vh;
-  position:absolute;
+  position:fixed;
   top: 0;
   left: 0;
   background-color: #00000098;
@@ -56,7 +59,7 @@
   background-color: transparent;
   border-radius: 50px;
   padding-left: 31px;
-  margin-top: 621px;
+  margin-top: 121px;
   padding-bottom: 7px;
   color: #000;
   padding-top: 7px;
@@ -66,6 +69,7 @@
   font-weight: 500;
   border: 2px solid #000000;
   text-decoration: none;
+  margin-top: 430px;
 }
 .menu__exit{
   background-image: url(../../images/exit-menu.svg);
@@ -73,14 +77,11 @@
   height: 25px;
   background-position: center;
   background-repeat: no-repeat;
-  position: absolute;
+  position: fixed;
   background-color: transparent;
   border: 0;
   top: 20px;
   right:20px;
   z-index: 12;
 }
-
-@media screen and (max-width:768px){
-  
 }

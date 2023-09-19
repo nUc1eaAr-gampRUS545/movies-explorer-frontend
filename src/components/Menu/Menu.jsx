@@ -17,7 +17,7 @@ export default function Menu({ closeMenu }) {
             Аккаунт
           </button>
         </NavLink>
-        <div className="menu__icon"></div>
+        
       </div>
     </div>
   );

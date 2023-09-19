@@ -18,16 +18,20 @@ export default function Profile({ openMenu, closeMenu, flag }){
    <div className="profile">
      <h2 className="profile__title">Привет,{user.name}!</h2>
      <div className="profile__info">
-        <div className="profile__info__cell " >
+        <div className="profile__info__cell1 " >
         <span className="profile__info__cell__span">Имя</span>
         <span className="profile__info__cell__span" >{user.name}</span>
         </div>
-        <div className="profile__info__cell" border='0' >
+        <div className="profile__info__cell1 profile__info__cell2" border='0' >
         <span className="profile__info__cell__span" >E-mail</span>
         <span className="profile__info__cell__span">{user.mail}</span>
         </div>
-
+        <div className="profile__buttons">
+      <button className="profile__button1">Редактировать</button>
+      <button className="profile__button2">Выйти из аккаунта</button>
      </div>
      </div>
+     </div>
+     
     </>)
 }
