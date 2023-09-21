@@ -43,6 +43,7 @@ transform: translate(0.1em,-0.1em);
 @media screen and (max-width:768px){
   .nav-tab{
     max-width: 668px;
+    margin: 0 50px;
   }
 }
 @media screen and (max-width:500px){
