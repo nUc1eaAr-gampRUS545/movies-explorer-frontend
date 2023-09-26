@@ -7,14 +7,14 @@ export default function Register(){
     <div className="register">
       <div className="register__logo"></div>
       <div className="register__title">Добро пожаловать!</div>
-      <div className="register__container">
+      <form className="register__container">
       <p className="register__caption">Имя</p>
-        <input className="register__input"></input>
+        <input className="register__input" ></input>
         <p className="register__caption">E-mail</p>
-        <input className="register__input"></input>
-        <p className="register__caption">Пароль</p>
-        <input className="register__input"></input>
-      </div>
+        <input className="register__input" type="email" required></input>
+        <p className="register__caption" >Пароль</p>
+        <input className="register__input" type="password" required></input>
+      </form>
       <button className="register__saved">Войти</button>
       <div className="register__info">
         <span className="register__span">Уже зарегистрированы?</span>

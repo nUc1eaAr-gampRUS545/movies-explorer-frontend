@@ -6,12 +6,12 @@ export default function Login() {
     <div className="login">
       <div className="login__logo"></div>
       <div className="login__title">Рады видеть!</div>
-      <div className="login__container">
+      <form className="login__container">
         <p className="login__caption">E-mail</p>
-        <input className="login__input"></input>
+        <input className="login__input" type="email" required></input>
         <p className="login__caption">Пароль</p>
-        <input className="login__input"></input>
-      </div>
+        <input className="login__input" type="password" required></input>
+      </form>
       <button className="login__saved">Войти</button>
       <div className="login__info">
         <span className="login__span">Ещё не зарегистрированы?</span>
