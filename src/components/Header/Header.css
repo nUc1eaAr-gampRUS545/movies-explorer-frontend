@@ -26,7 +26,7 @@
 .header__link {
   color: #000;
   text-align: right;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;;
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
@@ -113,9 +113,9 @@
     display: flex;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .header {
-    max-width: 500px;
+    max-width: 700px;
   }
   .header__container {
     grid-template-columns: 107px;
@@ -140,7 +140,7 @@
     align-items: center;
   }
   .header__logo {
-    margin-left: 30px;
+    margin-left: 14px;
   }
   .header__acaunt {
     display: none;

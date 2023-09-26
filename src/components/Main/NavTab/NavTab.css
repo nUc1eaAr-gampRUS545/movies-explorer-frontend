@@ -7,7 +7,7 @@
 .nav-tab__span {
   color: #000;
   font-size: 30px;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 166.667%;
@@ -15,18 +15,19 @@
   transition: all 0.3s linear;
   cursor: pointer;
 }
-.nav-tab__span:hover{
+.nav-tab__span:hover {
   color: #3456f3;
 }
 .nav-tab__link {
   display: flex;
   justify-content: space-between;
-
+  text-decoration: none;
+  height: 68px;
   border-bottom: 1px rgb(224, 222, 222) solid;
 }
 .nav-tab__button {
   color: #000;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
@@ -36,19 +37,45 @@
   background-color: transparent;
   transition: all 0.2s linear;
 }
-.nav-tab__button:hover{
-transform: translate(0.1em,-0.1em);
+.nav-tab__button:hover {
+  transform: translate(0.1em, -0.1em);
 }
 
-@media screen and (max-width:768px){
-  .nav-tab{
-    max-width: 668px;
-    margin: 0 50px;
+@media screen and (max-width: 1200px) {
+  .nav-tab {
+    margin: 0 50px 155px 50px;
+  }
+  a.nav-tab__link {
+    height: 68px;
+    margin: 20px 0 0 0;
+  }
+  .nav-tab__span {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 178.571%;
   }
 }
-@media screen and (max-width:500px){
-  .nav-tab{
-    margin: 0 auto;
-    max-width: 296px;
+@media screen and (max-width: 700px) {
+  .nav-tab {
+    margin: 0 14px;
+    min-width: 296px;
   }
+  a.nav-tab__link {
+    height: 50px;
+    margin: 20px 0 0 0;
+  }
+  .nav-tab__span {
+    font-size: 18px;
+    display: flex;
+    text-align: center;
+    line-height: auto;
+    align-items: center;
+  }
+  .nav-tab__button {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+  }
+ 
 }

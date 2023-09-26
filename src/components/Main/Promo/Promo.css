@@ -11,12 +11,12 @@
   letter-spacing: -0.88px;
   padding: 110px 0 24px 0;
   border-bottom: 1px solid #000000;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   margin: 0 70px 0 70px;
 }
 .promo__containers {
   display: grid;
-  margin: 70px 70px 0 70px;
+  margin: 50px 70px 0 70px;
   grid-template-columns: 550px 550px;
   grid-template-rows: auto auto;
   flex-direction: row;
@@ -25,28 +25,28 @@
 }
 .promo__container__named {
   color: #000;
+  font-family: "Inter", "Arial ", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  margin: 0;
   line-height: normal;
   letter-spacing: -0.8px;
-  font-family: "Inter";
 }
+
 .promo__container__content {
-  width: auto;
-  margin: 0;
+  width: 550px;
   color: #000;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px;
-  font-family: "Inter";
+  line-height: 142.857%;
+  margin: 22px 0 0 0;
 }
 .promo__scale {
+  max-width: 1140px;
   display: grid;
-  margin: 110px 70px 100px 70px;
+  margin: 85px auto 100px auto;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
   margin-bottom: 110px;
@@ -58,7 +58,7 @@
   text-align: center;
   background-color: #3456f3;
   color: #fff;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   text-align: center;
   font-size: 14px;
   font-style: normal;
@@ -74,7 +74,7 @@
   display: flex;
   background-color: #f2f2f2;
   color: #000;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -85,29 +85,42 @@
 .promo__scale__named {
   text-align: center;
   color: #a0a0a0;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   text-align: center;
-  font-size: 14px;
+  font-size: 11px;
   font-style: normal;
   font-weight: 500;
   line-height: 121.429%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+  .promo__title{
+    margin: 0 50px;
+    padding: 95px 0 24px 0;
+  }
+  .promo__containers{
+    margin: 50px auto 60px auto;
+    flex-direction: row;
+    grid-template-columns: 319px 319px;
+    max-width: 668px;
+    column-gap: 30px;
+  }
   .promo__container {
     grid-template-columns: 319px 319px;
+  }
+  .promo__container__content{
+    max-width: 319px;
+    margin-top: 20px;
+  }
+  .promo__scale{
+    max-width: 668px;
+    margin: 48px auto 100px auto;
   }
   .promo__scale__frontend {
     min-width: 528px;
   }
   .promo__scale__backend {
     min-width: 140px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .promo__containers {
-    flex-direction: column;
-    grid-template-columns: 284px;
   }
   .promo__scale__frontend {
     min-width: 528px;
@@ -117,23 +130,41 @@
   }
 }
 @media screen and (max-width: 767px) {
+  .promo__containers {
+    flex-direction: column;
+    grid-template-columns: 284px;
+    margin: 43px 14px 60px 14px;
+    gap: 35px;
+  }
+  .promo__container__content {
+    width: 284px;
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .promo__container__named {
+    width: 284px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .promo__scale__named {
+    font-size: 11px;
+    font-weight: 400;
+  }
   .promo__title {
-    padding: 95px 0 28px 0;
+    padding: 57px 0 28px 0;
     margin: 0 14px 0 14px;
+    font-size: 19px;
   }
-  .promo__containers{
-    margin: 60px 14px 60px 14px;
-    gap:56px;
-  }
+ 
   .promo__scale__backend {
     min-width: 100px;
   }
   .promo__scale__frontend {
     min-width: 184px;
   }
-  .promo__scale{
+  .promo__scale {
     display: grid;
-    margin: 60px 14px 93px 14px;
+    margin: 60px 14px 10px 14px;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
   }

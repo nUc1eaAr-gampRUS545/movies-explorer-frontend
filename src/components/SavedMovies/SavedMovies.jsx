@@ -3,6 +3,7 @@ import SearchForm from "./SearchForm/SearchForm.jsx";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import { NavLink } from "react-router-dom";
+
 export default function SavedMovies({ openMenu, closeMenu, flag }) {
   return (
     <>

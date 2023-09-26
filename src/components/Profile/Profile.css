@@ -9,7 +9,7 @@
 .profile__title {
   color: #000;
   text-align: center;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -40,7 +40,7 @@
 .profile__button1{
   color: #000;
   text-align: center;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -52,7 +52,7 @@
 .profile__button2{
   color: #ff0000;
   text-align: center;
-  font-family: "Inter";
+  font-family: "Inter", "Arial ", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
