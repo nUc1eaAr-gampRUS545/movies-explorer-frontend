@@ -10,13 +10,14 @@ import { Routes, Route} from "react-router-dom";
 
 import "../../vendor/fonts/font.css"
 function App() {
-
+  const [isLoggetIn, setLoggedIn] = useState(null);
   const [menu,setMenu]=useState(false);
+  const handleLogged = () => setLoggedIn(true);
 
   return (
   <Routes>
    <Route path="/" element={<Main />}/>
-   <Route path="/login" element={<Login />}/>
+   <Route path="/login" element={<Login handleLogged={handleLogged}/>}/>
    <Route path="/register" element={<Register />}/>
    <Route path="/error" element={<Error/>}/>
    <Route path="/profile" element={<Profile closeMenu={()=>setMenu(false)} openMenu={()=>setMenu(true)} flag={menu}/>} />

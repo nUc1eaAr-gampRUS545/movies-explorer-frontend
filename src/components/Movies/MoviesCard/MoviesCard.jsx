@@ -1,7 +1,7 @@
 import "./MoviesCard.css";
 import {React,useState} from "react";
 export default function MoviesCard({card}){
-    const [like,setLike]=useState(false)
+    const [like,setLike]=useState(false);
     return(
     <div className="card">
        <img  className="card__photography" src={card.photo} alt="Постер фильма"></img>
