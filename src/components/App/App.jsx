@@ -7,8 +7,8 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import { React,useState} from "react";
 import { Routes, Route} from "react-router-dom";
+import "../../vendor/fonts/font.css";
 
-import "../../vendor/fonts/font.css"
 function App() {
   const [isLoggetIn, setLoggedIn] = useState(null);
   const [menu,setMenu]=useState(false);

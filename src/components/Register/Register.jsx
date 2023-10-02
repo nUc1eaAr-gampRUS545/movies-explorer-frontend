@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import UserAuthorization from "../../utils/userAuth";
 import React, { useState } from "react";
 export default function Register() {
+  const [message,setMessage]=useState('');
   const [formValue, setFormValue] = useState({
     name: "",
     email: "",
@@ -18,10 +19,13 @@ export default function Register() {
     evt.preventDefault();
     UserAuthorization.registr(formValue)
       .then((data) => {
+        console.log(data)
+        setMessage(data);
         navigate("/login");
       })
       .catch((err) => {
-        console.error(err);
+        setMessage(err);
+        console.log(err);
       })
       .finally(() => {});
   };
@@ -55,9 +59,9 @@ export default function Register() {
           required
           onChange={handleChange}
         ></input>
-     
+     <span>{message}</span>
       <button className="register__saved" type="submit">
-        Войти
+        Зарегестрироваться
       </button> </form>
       <div className="register__info">
         <span className="register__span">Уже зарегистрированы?</span>

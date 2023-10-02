@@ -9,6 +9,7 @@ export default function Login({handleLogged}) {
     email: "",
     password: "",
   });
+  const [message,setMessage]=useState('');
   const handleChange=(evt)=>{
     const {name,value}=evt.target;
     setFormValue({...formValue,[name]:value})
@@ -16,11 +17,14 @@ export default function Login({handleLogged}) {
   const handleSubmit=(evt)=>{
     evt.preventDefault();
     UserAuthorization.authorization(formValue).then((data)=>{
+      console.log(data)
       handleLogged();
       navigate("/");
-      console.log(data)
+      setMessage(data)
+      
     }).catch((err)=>{
-      console.error(err)
+      setMessage(err)
+      console.error(err);
     }).finally(()=><Preloader/>)
   }
   return (
@@ -33,7 +37,7 @@ export default function Login({handleLogged}) {
         <input className="login__input" type="email" name="email" required onChange={handleChange}></input>
         <p className="login__caption">Пароль</p>
         <input className="login__input" type="password" name="password" required onChange={handleChange}></input>
-      
+      <span>{message=="Ошибка 401" ? "Вы ввели неправильный логин или пароль." : "" }</span>
       <button className="login__saved" type="submit">Войти</button></form>
       <div className="login__info">
         <span className="login__span">Ещё не зарегистрированы?</span>

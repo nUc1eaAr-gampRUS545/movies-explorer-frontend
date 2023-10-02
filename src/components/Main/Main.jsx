@@ -11,7 +11,7 @@ import "./Main.css";
 export default function Main() {
   return (
     <>
-      <div class="main__header">
+      <div className="main__header">
         <Header
           element={
             <div className="header__buttons">

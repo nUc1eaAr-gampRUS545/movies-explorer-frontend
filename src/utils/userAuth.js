@@ -1,4 +1,4 @@
-const baseURL='http://movies-explorer-api.nomoredomainsicu.ru';
+const baseURL='https://movies-explorer-api.nomoredomainsicu.ru/';
 class UserAuth{
     _checkResponse(res) {
         if (res.ok) {
@@ -8,7 +8,7 @@ class UserAuth{
     }
     registr(data){
         return(
-            fetch(`${baseURL}/signup`,{
+            fetch(`${baseURL}signup`,{
                 method:"POST",
                 headers:{'Content-Type': 'application/json'},
                 credentials:"include",
@@ -18,17 +18,12 @@ class UserAuth{
         }
     authorization(data){
         return(
-            fetch(`${baseURL}/signin`,{
+            fetch(`${baseURL}signin`,{
                 method:"POST",
                 headers:{'Content-Type': 'application/json'},
                 credentials:"include",
                 body: JSON.stringify(data)
-                }).then(this._checkResponse).then((data) => {
-                    if (data.token) {
-                      const token = data.token;
-                      return token;
-                    };
-                  }))
+                }).then(this._checkResponse))
     }
 }
 const UserAuthorization =new UserAuth();

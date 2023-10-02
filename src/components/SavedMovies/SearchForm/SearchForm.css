@@ -25,11 +25,7 @@ input:focus {
   flex-direction: row;
   justify-content: flex-end;
 }
-.search-form__switch {
-  width: 36px;
-  height: 20px;
-  margin: auto 15px;
-}
+
 .search-form__input {
   width: calc(100%);
   border: 0;
@@ -61,6 +57,26 @@ input:focus {
 }
 .search-form__button1 {
   display: none;
+}
+.search-form__switch{
+  width: 36px;
+  height: 20px;
+  margin: auto 15px;
+  background-image: url(../../../images/search-form/smalltumb.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  background-color: transparent;
+}
+.search-form__switch__no-active{
+  width: 36px;
+  height: 20px;
+  margin: auto 15px;
+  background-image: url(../../../images/search-form/smalltumb-no-active.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  background-color: transparent;
 }
 .search-form__button2 {
   background-color: transparent;
