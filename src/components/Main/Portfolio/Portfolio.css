@@ -142,7 +142,8 @@
   .portfolio__container {
     grid-template-columns: 292px;
     flex-direction: column;
-    margin: 0 14px 0 14px;
+    margin: 0 auto 0 auto;
+    width: 292px;
     grid-template-rows: auto auto 50px 50px auto auto;
   }
   .portfolio__container__photo {

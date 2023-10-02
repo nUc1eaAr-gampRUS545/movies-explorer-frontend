@@ -63,12 +63,15 @@
     padding: 10px 0 0 12px;
   }
   .card__movie-time{
-    padding: 0px 0 0px 12px;
+    padding: 0px 0 14px 12px;
   }
 }
 @media screen and (max-width: 760px) {
   .card {
     min-width: 300px;
+  }
+  .card__movie-time{
+    padding: 0px 0 0px 12px;
   }
   .card__photography {
     width: 300px;

@@ -6,9 +6,7 @@ class MoviesApi{
       return Promise.reject(`Ошибка ${res.status}`);
     }
     getMovies(){
-        return fetch("https://api.nomoreparties.co/beatfilm-movies").then(this._checkResponse).then((data)=>{
-            console.log(data);
-        })
+        return fetch("https://api.nomoreparties.co/beatfilm-movies").then(this._checkResponse)
     }
 }
  const movies=new MoviesApi();

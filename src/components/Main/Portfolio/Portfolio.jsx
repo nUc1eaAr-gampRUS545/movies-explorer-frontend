@@ -3,7 +3,7 @@ export default function Portfolio() {
   return (
     <div className="portfolio" name="student">
       <h2 className="portfolio__title">Студент</h2>
-      <div className="portfolio__container">
+      <section className="portfolio__container">
         <div className="portfolio__container__photo"></div>
 
         <h3 className="portfolio__container__name">Никита</h3>
@@ -28,7 +28,7 @@ export default function Portfolio() {
         >
           Портфолио
         </a>
-      </div>
+      </section>
     </div>
   );
 }

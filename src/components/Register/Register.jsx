@@ -2,6 +2,7 @@ import "./Register.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserAuthorization from "../../utils/userAuth";
 import React, { useState } from "react";
+import Input from "../Input/Input";
 export default function Register() {
   const [message,setMessage]=useState('');
   const [formValue, setFormValue] = useState({
@@ -14,7 +15,14 @@ export default function Register() {
     const { name, value } = evt.target;
     setFormValue({ ...formValue, [name]: value });
   };
-
+  const textError=(message)=>{
+     if(message==="Ошибка 409"){
+      return "Пользователь с таким email уже существует.";
+     }
+     if(message==="Ошибка 400"){
+      return "При регистрации пользователя произошла ошибка.";
+     }
+  }
   const handleSubmit = (evt) => {
     evt.preventDefault();
     UserAuthorization.registr(formValue)
@@ -35,31 +43,29 @@ export default function Register() {
       <div className="register__title">Добро пожаловать!</div>
       <form className="register__container" onSubmit={handleSubmit}>
         <p className="register__caption">Имя</p>
-        <input
-          className="register__input"
+        <Input
           name="name"
           value={formValue.name}
-          onChange={handleChange}
-        ></input>
+          message={message}
+          handleChange={handleChange}
+        ></Input>
         <p className="register__caption">E-mail</p>
-        <input
-          className="register__input"
+        <Input
+          message={message}
           type="email"
           name="email"
-          required
           value={formValue.email}
-          onChange={handleChange}
-        ></input>
+          handleChange={handleChange}
+        ></Input>
         <p className="register__caption">Пароль</p>
-        <input
-          className="register__input"
+        <Input
           type="password"
+          message={message}
           name="password"
           value={formValue.password}
-          required
-          onChange={handleChange}
-        ></input>
-     <span>{message}</span>
+          handleChange={handleChange}
+        ></Input>
+     <div className="register__input__error">{textError(message)}</div>
       <button className="register__saved" type="submit">
         Зарегестрироваться
       </button> </form>

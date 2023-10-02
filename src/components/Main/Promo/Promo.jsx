@@ -3,7 +3,7 @@ export default function Promo() {
   return (
     <div className="promo">
       <h2 className="promo__title">О проекте</h2>
-      <div className="promo__containers">
+      <section className="promo__containers">
       <div className="promo__container">
         <h3 className="promo__container__named">
           Дипломный проект включал 5 этапов
@@ -20,7 +20,7 @@ export default function Promo() {
           У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
           соблюдать, чтобы успешно защититься.
         </p></div>
-      </div>
+      </section>
       <div className="promo__scale">
         <div className="promo__scale__backend">1 неделя</div>
         <div className="promo__scale__frontend">4 недели</div>

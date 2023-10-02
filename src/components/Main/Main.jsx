@@ -4,7 +4,7 @@ import Promo from "./Promo/Promo";
 import Techs from "./Techs/Techs";
 import Portfolio from "./Portfolio/Portfolio";
 import NavTab from "./NavTab/NavTab";
-import {React} from "react";
+import { React } from "react";
 import Footer from "../Footer/Footer";
 import { NavLink } from "react-router-dom";
 import "./Main.css";

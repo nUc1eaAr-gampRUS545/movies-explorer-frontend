@@ -132,8 +132,9 @@
 @media screen and (max-width: 767px) {
   .promo__containers {
     flex-direction: column;
+    width: 292px;
     grid-template-columns: 284px;
-    margin: 43px 14px 60px 14px;
+    margin: 43px auto 60px auto;
     gap: 35px;
   }
   .promo__container__content {
