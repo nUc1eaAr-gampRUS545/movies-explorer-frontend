@@ -3,7 +3,7 @@ import { React, useState, useEffect } from "react";
 import Preloader from "../Preloader/Preloader";
 
 import "./MoviesCardList.css";
-export default function MoviesCardList({films,isLoading}) {
+export default function MoviesCardList({films,isLoading,saveFilm}) {
   const [numberCards, setNumberCards] = useState(16);
   
   const slicedArray = films.slice(0, numberCards);
@@ -13,7 +13,7 @@ export default function MoviesCardList({films,isLoading}) {
     <>
       <div className="card-list">
         {slicedArray.map((card) => (
-          <MoviesCard card={card} />
+          <MoviesCard card={card}/>
         ))}
       </div>
       <div className="cards__footer">

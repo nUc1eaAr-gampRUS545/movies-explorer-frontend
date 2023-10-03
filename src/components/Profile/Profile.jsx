@@ -2,19 +2,10 @@ import Header from "../Header/Header";
 import "./Profile.css";
 import { user } from "../../utils/constatns";
 import { NavLink } from "react-router-dom";
-export default function Profile({ openMenu, closeMenu, flag }){
+export default function Profile({...props}){
     return(
      <>
-    <Header
-        element={
-          <>
-            <NavLink to="/profile">
-              <button className="header__acaunt" onClick={closeMenu}>Аккаунт</button>
-            </NavLink>
-            <button className="header__menu-icon" onClick={openMenu}></button>
-          </>
-        } closeMenu={closeMenu} flag={flag}
-      />
+    <Header {...props}/>
    <div className="profile">
      <h2 className="profile__title">Привет,{user.name}!</h2>
      <div className="profile__info">

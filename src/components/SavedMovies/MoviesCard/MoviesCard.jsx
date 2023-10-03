@@ -1,5 +1,5 @@
 import "./MoviesCard.css";
-export default function MoviesCard({card}){
+export default function MoviesCard({card,saveFilm}){
     return(
     <div className="card">
        <img  className="card__photography" src={card.photo} alt="Постер фильма"></img>

@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 export default function Movies({openMenu,closeMenu,flag}) {
   const [films, setFilm] = useState([]);
   const [isLoading, setLoading] = useState(true);
+ 
   useEffect(() => {
     movies
       .getMovies()

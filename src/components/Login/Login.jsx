@@ -6,15 +6,15 @@ import Preloader from "../Movies/Preloader/Preloader";
 import Input from "../Input/Input";
 export default function Login({ handleLogged }) {
   const navigate = useNavigate();
-  const [formValue, setFormValue] = useState({
+  const [formValue, setFormValue] = React.useState({
     email: "",
     password: "",
   });
-  const [message, setMessage] = useState("");
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };
+  const [message, setMessage] = useState("");
   const textError = (message) => {
     if (message === "Ошибка 401") {
       return "Вы ввели неправильный логин или пароль.";
@@ -48,14 +48,16 @@ export default function Login({ handleLogged }) {
           type="email"
           name="email"
           message={message}
-          handleChange={handleChange}
+          onChange={handleChange}
+          value={formValue.email}
         ></Input>
         <p className="login__caption">Пароль</p>
         <Input
           type="password"
           name="password"
           message={message}
-          handleChange={handleChange}
+          value={formValue.password}
+          onChange={handleChange}
         ></Input>
         <div
           className={

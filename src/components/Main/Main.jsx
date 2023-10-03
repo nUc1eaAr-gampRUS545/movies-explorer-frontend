@@ -8,7 +8,7 @@ import { React } from "react";
 import Footer from "../Footer/Footer";
 import { NavLink } from "react-router-dom";
 import "./Main.css";
-export default function Main() {
+export default function Main({isLoggetIn}) {
   return (
     <>
       <div className="main__header">
@@ -23,6 +23,7 @@ export default function Main() {
               </NavLink>
             </div>
           }
+          isLoggetIn={isLoggetIn}
         />
       </div>
       <AboutProject />
