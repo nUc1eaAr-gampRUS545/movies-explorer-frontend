@@ -10,7 +10,7 @@ export default function MoviesCard({card,isLoading}){
     const calculationMovieTime=(time)=>{
         const hours=Math.ceil(time/60)-1;
         const minutes=time-hours*60;
-        if(hours == 0){
+        if(hours === 0){
             return `${minutes}м`
         }
         
