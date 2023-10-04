@@ -18,18 +18,10 @@ export default function SavedMovies({ openMenu, closeMenu, flag,isLoggetIn }) {
   return (
     <>
       <Header
-        element={
-          <>
-            <NavLink to="/profile">
-              <button className="header__acaunt" onClick={closeMenu}>
-                Аккаунт
-              </button>
-            </NavLink>
-            <button className="header__menu-icon" onClick={openMenu}></button>
-          </>
-        }
+        openMenu={openMenu}
         closeMenu={closeMenu}
         flag={flag}
+        isLoggetIn={isLoggetIn}
       />
       <main>
       <SearchForm />

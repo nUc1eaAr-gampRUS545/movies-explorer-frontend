@@ -1,10 +1,9 @@
 import "./Header.css";
 import { NavLink } from "react-router-dom";
 import Menu from "../Menu/Menu";
-
-export default function Header({closeMenu, flag, isLoggetIn }) {
+export default function Header({isLoggetIn,closeMenu, openMenu,flag }) {
   return !isLoggetIn ? (<>
-   { flag && <Menu closeMenu={closeMenu}/> }
+   
     <header className="header">
       <div className="header__container">
         <NavLink to="/" className="header__logo"></NavLink>
@@ -14,6 +13,7 @@ export default function Header({closeMenu, flag, isLoggetIn }) {
         <NavLink className="header__register-button" to="/register">
           Регистрация
         </NavLink>
+        
         <NavLink to="/login">
           <button className="header__login-button">Войти</button>
         </NavLink>
@@ -21,7 +21,7 @@ export default function Header({closeMenu, flag, isLoggetIn }) {
     </header>
     </>) : (
       <>
-    {flag && <Menu closeMenu={closeMenu}/> }
+    {flag && <Menu closeMenu={closeMenu} className="header__menu-icon"/> }
     <header className="header">
       <div className="header__container">
         <NavLink to="/" className="header__logo"></NavLink>
@@ -33,6 +33,7 @@ export default function Header({closeMenu, flag, isLoggetIn }) {
         </NavLink>
       </div>
       <div className="header__buttons">
+        <button className="header__menu-icon" onClick={openMenu}></button>
       <NavLink to="/profile">
               <button className="header__acaunt">Аккаунт</button>
             </NavLink>

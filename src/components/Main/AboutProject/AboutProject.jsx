@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./AboutProject.css"
 export default function AboutProject() {
     return (   
@@ -8,9 +9,9 @@ export default function AboutProject() {
         </div>
         </div>
         <nav className="about-project__nav">
-            <a className="about-project__nav__link" href="#"> О проекте</a>
-            <a className="about-project__nav__link" href="#techs"> Технологии</a>
-            <a className="about-project__nav__link" href="#student"> Студент</a>
+            <NavLink className="about-project__nav__link" to="/error"> О проекте</NavLink >
+            <NavLink  className="about-project__nav__link" to="/error"> Технологии</NavLink>
+            <NavLink  className="about-project__nav__link" to="/error"> Студент</NavLink>
         </nav>
         </section>
     );

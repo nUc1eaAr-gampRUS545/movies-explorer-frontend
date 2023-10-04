@@ -27,6 +27,7 @@
 }
 .error__out {
   color: #3456f3;
+  text-decoration: none;
   font-family: "Inter", "Arial ", sans-serif;;
   text-align: center;
   font-size: 14px;
@@ -34,4 +35,8 @@
   font-weight: 400;
   line-height: normal;
   margin-top: 184px;
+  transition: all 0.2s linear;
+}
+.error__out:hover{
+  opacity: 0.7;
 }

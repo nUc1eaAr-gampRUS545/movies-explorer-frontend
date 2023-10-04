@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import React,{useEffect,useState} from "react";
 import movies from "../../utils/MoviesApi";
 import { NavLink } from "react-router-dom";
-export default function Movies({openMenu,closeMenu,flag}) {
+export default function Movies({openMenu,closeMenu,flag,isLoggetIn}) {
   const [films, setFilm] = useState([]);
   const [isLoading, setLoading] = useState(true);
  
@@ -26,14 +26,10 @@ export default function Movies({openMenu,closeMenu,flag}) {
   return (
     <>
       <Header
-        element={
-          <>
-            <NavLink to="/profile">
-              <button className="header__acaunt">Аккаунт</button>
-            </NavLink>
-            <button className="header__menu-icon" onClick={openMenu}></button>
-          </>
-        }  closeMenu={closeMenu} flag={flag}
+        openMenu={openMenu}
+        closeMenu={closeMenu}
+        flag={flag}
+        isLoggetIn={isLoggetIn}
       />
       <main>
       <SearchForm />
