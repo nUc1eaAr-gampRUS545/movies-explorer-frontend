@@ -10,8 +10,10 @@ class UserAuth{
         return(
             fetch(`${baseURL}signup`,{
                 method:"POST",
-                headers:{'Content-Type': 'application/json'},
                 credentials:"include",
+                headers:{//'Áccept':'application/json',
+                    'Content-Type': 'application/json'},
+                
                 body: JSON.stringify(data)
                 }).then(this._checkResponse))
         
@@ -20,8 +22,11 @@ class UserAuth{
         return(
             fetch(`${baseURL}signin`,{
                 method:"POST",
-                headers:{'Content-Type': 'application/json'},
                 credentials:"include",
+                headers: {
+                    //"Áccept": "application/json",
+                    "Content-Type": "application/json"},
+                
                 body: JSON.stringify(data)
                 }).then(this._checkResponse))
     }

@@ -4,6 +4,7 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { savedCard } from "../../utils/constatns";
 import apiSavedMovies from "../../utils/MainApi";
 export default function SavedMovies({ openMenu, closeMenu, flag,isLoggetIn }) {
   const [films, setFilm] = useState([]);
@@ -30,8 +31,9 @@ export default function SavedMovies({ openMenu, closeMenu, flag,isLoggetIn }) {
         closeMenu={closeMenu}
         flag={flag}
       />
+      <main>
       <SearchForm />
-      <MoviesCardList films={films}/>
+      <MoviesCardList films={savedCard}/></main>
       <Footer />
     </>
   );

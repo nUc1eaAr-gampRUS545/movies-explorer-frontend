@@ -58,6 +58,7 @@ export default function Login({ handleLogged }) {
           message={message}
           value={formValue.password}
           onChange={handleChange}
+          required
         ></Input>
         <div
           className={
@@ -68,7 +69,7 @@ export default function Login({ handleLogged }) {
         >
           {textError(message)}
         </div>
-        <button className="login__saved" type="submit">
+        <button className="login__saved"  type="submit" >
           Войти
         </button>
       </form>

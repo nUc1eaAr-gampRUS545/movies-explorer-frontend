@@ -49,6 +49,10 @@
   margin: 14px 12px 0px 0px;
   padding: 0;
   background-image: url(../../../images/card__button-delete.svg);
+  transition: all 0.2s linear;
+}
+.card__button-delete:hover{
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 1200px) {

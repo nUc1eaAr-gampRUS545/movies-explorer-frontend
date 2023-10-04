@@ -6,13 +6,23 @@ import Profile from "../Profile/Profile";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import { React, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import apiSavedMovies from "../../utils/MainApi";
+import { Routes, Route,useNavigate } from "react-router-dom";
 import "../../vendor/fonts/font.css";
 
 function App() {
   const [isLoggetIn, setLoggedIn] = useState(false);
   const [menu, setMenu] = useState(false);
- 
+  const navigate = useNavigate();
+  const checkToken = () => {
+    apiSavedMovies.getContent()
+    .then((data) => {
+      if (!data) {
+        return;
+      }
+      navigate("/");
+      setLoggedIn(true);})
+  }
 
   return (
     <Routes>

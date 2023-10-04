@@ -11,11 +11,11 @@ export default function MoviesCardList({films,isLoading,saveFilm}) {
   
   return ( isLoading ? <Preloader/> :
     <>
-      <div className="card-list">
+      <section className="card-list">
         {slicedArray.map((card) => (
           <MoviesCard card={card}/>
         ))}
-      </div>
+      </section>
       <div className="cards__footer">
         <button
           className="cards__add"

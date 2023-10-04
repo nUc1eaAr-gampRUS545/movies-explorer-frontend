@@ -13,14 +13,14 @@ input:focus {
   flex-direction: row;
   justify-content: space-between;
 }
-.search-form__group-left {
+.search-form__group1 {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
 }
 
-.search-form__group-right {
+.search-form__group2 {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

@@ -35,8 +35,9 @@ export default function Movies({openMenu,closeMenu,flag}) {
           </>
         }  closeMenu={closeMenu} flag={flag}
       />
+      <main>
       <SearchForm />
-      <MoviesCardList films={films} isLoading={isLoading}/>
+      <MoviesCardList films={films} isLoading={isLoading}/></main>
       <Footer />
     </>
   );

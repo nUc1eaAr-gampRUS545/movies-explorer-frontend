@@ -11,7 +11,7 @@ import "./Main.css";
 export default function Main({isLoggetIn}) {
   return (
     <>
-      <div className="main__header">
+      <div className="main__top">
         <Header
           element={
             <div className="header__buttons">
@@ -26,11 +26,13 @@ export default function Main({isLoggetIn}) {
           isLoggetIn={isLoggetIn}
         />
       </div>
+      <main>
       <AboutProject />
       <Promo />
       <Techs />
       <Portfolio />
       <NavTab />
+      </main>
       <Footer />
     </>
   );

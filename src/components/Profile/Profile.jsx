@@ -1,7 +1,7 @@
 import Header from "../Header/Header";
 import "./Profile.css";
 import { user } from "../../utils/constatns";
-import { NavLink } from "react-router-dom";
+
 export default function Profile({...props}){
     return(
      <>

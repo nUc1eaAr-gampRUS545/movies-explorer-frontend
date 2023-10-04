@@ -44,26 +44,28 @@ export default function Register() {
       <form className="register__container" onSubmit={handleSubmit}>
         <p className="register__caption">Имя</p>
         <Input
+          type="text"
           name="name"
           value={formValue.name}
           message={message}
-          handleChange={handleChange}
+          onChange={handleChange}
         ></Input>
         <p className="register__caption">E-mail</p>
         <Input
-          message={message}
-          type="email"
-          name="email"
-          value={formValue.email}
-          handleChange={handleChange}
+           type="email"
+           name="email"
+           message={message}
+           onChange={handleChange}
+           value={formValue.email}
         ></Input>
         <p className="register__caption">Пароль</p>
         <Input
-          type="password"
-          message={message}
-          name="password"
-          value={formValue.password}
-          handleChange={handleChange}
+           type="password"
+           name="password"
+           message={message}
+           value={formValue.password}
+           onChange={handleChange}
+           required
         ></Input>
      <div className="register__input__error">{textError(message)}</div>
       <button className="register__saved" type="submit">

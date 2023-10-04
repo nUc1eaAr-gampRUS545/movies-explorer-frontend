@@ -10,15 +10,29 @@ class MainApi{
         return(
             fetch(`${baseURL}/movies`,{
                 method:"POST",
-                headers:{'Content-Type': 'application/json'},
+                headers:{//'Áccept':'application/json',
+                    'Content-Type': 'application/json'},
                 credentials:"include",
                 body: JSON.stringify(data)
                 }).then(this._checkResponse))
     }
     getSavedMovies(){
         return(
-            fetch(baseURL).then(this._checkResponse)
+            fetch(baseURL,{
+                method:"GET",
+                headers:{//'Áccept':'application/json',
+                    'Content-Type': 'application/json'},
+                credentials:"include"}).then(this._checkResponse)
         )
+    }
+    getContent=()=>{
+        return(fetch(`${baseURL}/users/me`,{
+            method:"GET",
+            headers:{'Content-Type': 'application/json',},
+            credentials:"include"
+
+            }).then(this._checkResponse))
+    
     }
 }
 const apiSavedMovies=new MainApi();
