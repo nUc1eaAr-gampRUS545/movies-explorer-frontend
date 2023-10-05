@@ -17,7 +17,7 @@ export default function SearchForm() {
       </form>
       <div className="search-form__group-right">
       <button className="search-form__button2"></button>
-      <button className={switchButton ? "search-form__switch" : "search-form__switch__no-active"} onClick={()=>setSwitchButton(true)} ></button>
+      <button className={switchButton ? "search-form__switch" : "search-form__switch-no-active"} onClick={()=>setSwitchButton(true)} ></button>
         <span className="search-form__span">Короткометражки</span>
       </div>
     </div>

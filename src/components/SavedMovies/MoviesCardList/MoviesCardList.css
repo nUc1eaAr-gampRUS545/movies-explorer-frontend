@@ -7,7 +7,7 @@
     box-sizing: border-box;
     gap: 17px;
   }
-  .cards__add {
+  .cards-add {
     width: 320px;
     height: 36px;
     flex-shrink: 0;
@@ -16,7 +16,7 @@
     border: 0;
     background: #f4f4f4;
   }
-  .cards__footer{
+  .cards-footer{
     width: 100%;
     display: flex;
     justify-content: center;

@@ -67,7 +67,7 @@ export default function Register() {
            onChange={handleChange}
            required
         ></Input>
-     <div className="register__input__error">{textError(message)}</div>
+     <p className="register__input-error">{textError(message)}</p>
       <button className="register__saved" type="submit">
         Зарегестрироваться
       </button> </form>

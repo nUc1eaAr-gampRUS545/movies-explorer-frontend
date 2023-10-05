@@ -25,7 +25,7 @@ export default function SavedMovies({ openMenu, closeMenu, flag,isLoggetIn }) {
       />
       <main>
       <SearchForm />
-      <MoviesCardList films={savedCard}/></main>
+      <MoviesCardList films={films}/></main>
       <Footer />
     </>
   );

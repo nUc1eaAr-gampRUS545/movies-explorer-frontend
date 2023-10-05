@@ -22,7 +22,7 @@ export default function SearchForm() {
           className={
             switchButton
               ? "search-form__switch"
-              : "search-form__switch__no-active"
+              : "search-form__switch-no-active"
           }
           onClick={() => setSwitchButton(true)}
         ></button>

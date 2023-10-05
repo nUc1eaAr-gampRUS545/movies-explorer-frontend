@@ -8,10 +8,10 @@ export default function AboutProject() {
             <h1 className="about-project__title">Учебный проект студента факультета Веб-разработки.</h1>
         </div>
         </div>
-        <nav className="about-project__nav">
-            <NavLink className="about-project__nav__link" to="/error"> О проекте</NavLink >
-            <NavLink  className="about-project__nav__link" to="/error"> Технологии</NavLink>
-            <NavLink  className="about-project__nav__link" to="/error"> Студент</NavLink>
+        <nav className="about-project-nav">
+            <NavLink className="about-project-nav__link" to="/error"> О проекте</NavLink >
+            <NavLink  className="about-project-nav__link" to="/error"> Технологии</NavLink>
+            <NavLink  className="about-project-nav__link" to="/error"> Студент</NavLink>
         </nav>
         </section>
     );

@@ -24,7 +24,7 @@
   line-height: 53px;
   text-align: center;
 }
-.about-project__nav {
+.about-project-nav {
   display: grid;
   flex-direction: row;
   grid-template-columns: 1fr 1fr 1fr;
@@ -33,7 +33,7 @@
 
   padding: 24px 0;
 }
-.about-project__nav__link {
+.about-project-nav__link {
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;

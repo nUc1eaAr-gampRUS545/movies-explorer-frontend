@@ -16,9 +16,9 @@ export default function MoviesCardList({films,isLoading,saveFilm}) {
           <MoviesCard card={card}/>
         ))}
       </section>
-      <div className="cards__footer">
+      <div className="cards-footer">
         <button
-          className="cards__add"
+          className="cards-add"
           onClick={() =>
             numberCards + 16 > films.length
               ? setNumberCards(films.length)

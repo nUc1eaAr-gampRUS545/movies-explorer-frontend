@@ -15,7 +15,7 @@
   font-weight: 500;
   line-height: normal;
 }
-.profile__info__cell1 {
+.profile__info-cell {
   width: 500px;
   box-sizing: border-box;
   height: 70px;
@@ -24,7 +24,7 @@
   justify-content: space-between;
   margin-top: 17px;
 }
-.profile__info__cell2 {
+.profile__info-cell-no-border {
   border-bottom: 0 !important;
 
 }

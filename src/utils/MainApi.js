@@ -18,7 +18,7 @@ class MainApi{
     }
     getSavedMovies(){
         return(
-            fetch(baseURL,{
+            fetch(`${baseURL}/movies`,{
                 method:"GET",
                 headers:{//'Áccept':'application/json',
                     'Content-Type': 'application/json'},
