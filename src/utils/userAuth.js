@@ -22,10 +22,10 @@ class UserAuth{
         return(
             fetch(`${baseURL}signin`,{
                 method:"POST",
-                credentials:"include",
+                
                 headers: {
-                    //"Áccept": "application/json",
                     "Content-Type": "application/json"},
+                    credentials:"include",
                 
                 body: JSON.stringify(data)
                 }).then(this._checkResponse))
