@@ -23,7 +23,7 @@
   column-gap: 40px;
   row-gap: 26px;
 }
-.promo__container__named {
+.promo__containers-block-named {
   color: #000;
   font-family: "Inter", "Arial ", sans-serif;
   font-size: 20px;
@@ -33,7 +33,7 @@
   letter-spacing: -0.8px;
 }
 
-.promo__container__content {
+.promo__containers-block-content {
   width: 550px;
   color: #000;
   font-family: "Inter", "Arial ", sans-serif;
@@ -51,7 +51,7 @@
   grid-template-rows: auto auto;
   margin-bottom: 110px;
 }
-.promo__scale__backend {
+.promo__scale-backend {
   min-width: 228px;
   display: flex;
   height: 36px;
@@ -67,7 +67,7 @@
   align-items: center;
   justify-content: center;
 }
-.promo__scale__frontend {
+.promo__scale-frontend {
   min-width: 912px;
   height: 36px;
   flex-shrink: 0;
@@ -82,7 +82,7 @@
   align-items: center;
   justify-content: center;
 }
-.promo__scale__named {
+.promo__scale-named {
   text-align: center;
   color: #a0a0a0;
   font-family: "Inter", "Arial ", sans-serif;
@@ -105,10 +105,10 @@
     max-width: 668px;
     column-gap: 30px;
   }
-  .promo__container {
+  .promo__containers-block {
     grid-template-columns: 319px 319px;
   }
-  .promo__container__content{
+  .promo__containers-block-content{
     max-width: 319px;
     margin-top: 20px;
   }
@@ -116,37 +116,38 @@
     max-width: 668px;
     margin: 48px auto 100px auto;
   }
-  .promo__scale__frontend {
+  .promo__scale-frontend {
     min-width: 528px;
   }
-  .promo__scale__backend {
+  .promo__scale-backend {
     min-width: 140px;
   }
-  .promo__scale__frontend {
+  .promo__scale-frontend {
     min-width: 528px;
   }
-  .promo__scale__backend {
+  .promo__scale-backend {
     min-width: 140px;
   }
 }
 @media screen and (max-width: 767px) {
   .promo__containers {
     flex-direction: column;
+    width: 292px;
     grid-template-columns: 284px;
-    margin: 43px 14px 60px 14px;
+    margin: 43px auto 60px auto;
     gap: 35px;
   }
-  .promo__container__content {
+  .promo__containers-block-content {
     width: 284px;
     font-size: 11px;
     font-weight: 400;
   }
-  .promo__container__named {
+  .promo__containers-block-named {
     width: 284px;
     font-size: 18px;
     font-weight: 400;
   }
-  .promo__scale__named {
+  .promo__scale-named {
     font-size: 11px;
     font-weight: 400;
   }
@@ -156,10 +157,10 @@
     font-size: 19px;
   }
  
-  .promo__scale__backend {
+  .promo__scale-backend {
     min-width: 100px;
   }
-  .promo__scale__frontend {
+  .promo__scale-frontend {
     min-width: 184px;
   }
   .promo__scale {

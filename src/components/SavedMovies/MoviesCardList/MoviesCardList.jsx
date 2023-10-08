@@ -1,9 +1,9 @@
-import { savedCard } from "../../../utils/constatns";
+
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
-export default function MoviesCardList(){
-    return(<div className="card-list">
-        {savedCard.map(card=>
+export default function MoviesCardList({films}){
+    return(<section className="card-list">
+        {films.map(card=>
         <MoviesCard card={card} />)}
-    </div>)
+    </section>)
 }

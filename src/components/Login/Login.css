@@ -22,20 +22,6 @@
 .login__container {
   margin: 57px 0 0 0;
 }
-.login__input {
-  border: 0px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  width: 396px;
-  outline: none;
-  font-family: "Inter", "Arial", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  line-height: 1.214;
-  margin-bottom: 20px;
-}
 .login__caption {
   color: #a0a0a0;
   font-size: 10px;
@@ -88,6 +74,21 @@
   font-weight: 400;
   line-height: normal;
 }
+.login__input__error {
+  color: #ee3465;
+  font-family: "Inter";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: -14px 0 0 0;
+  opacity: 0;
+  width: 258px;
+  height: 20px;
+}
+.login__input__error-active {
+  opacity: 1;
+}
 @media screen and (max-width: 500px) {
   .login__saved {
     width: 260px;
@@ -99,9 +100,6 @@
     width: 260px;
     flex-shrink: 0;
     margin: 80px auto 0 auto;
-  }
-  .login__input {
-    width: 260px;
   }
   .login__info {
     width: 260px;

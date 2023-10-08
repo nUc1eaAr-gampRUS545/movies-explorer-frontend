@@ -1,7 +1,7 @@
 import "./Footer.css"
 export default function Footer() {
     return (
-        <div className="footer">
+        <footer className="footer">
             <p className="footer__caption">Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <div className="footer__info">
                 
@@ -11,5 +11,5 @@ export default function Footer() {
                 </div>
                 <p className="footer__project-year">@2023</p>
             </div>
-        </div>
+        </footer>
     )}   

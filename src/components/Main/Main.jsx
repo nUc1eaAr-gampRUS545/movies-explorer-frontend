@@ -4,32 +4,22 @@ import Promo from "./Promo/Promo";
 import Techs from "./Techs/Techs";
 import Portfolio from "./Portfolio/Portfolio";
 import NavTab from "./NavTab/NavTab";
-import {React} from "react";
+import { React } from "react";
 import Footer from "../Footer/Footer";
-import { NavLink } from "react-router-dom";
-import "./Main.css";
-export default function Main() {
+import "./Main.css";  
+export default function Main({...props}) {
   return (
     <>
-      <div class="main__header">
-        <Header
-          element={
-            <div className="header__buttons">
-              <NavLink className="header__register-button" to="/register">
-                Регистрация
-              </NavLink>
-              <NavLink to="/login">
-                <button className="header__login-button">Войти</button>
-              </NavLink>
-            </div>
-          }
-        />
+      <div className="main-top">
+        <Header  {...props}/>
       </div>
+      <main>
       <AboutProject />
       <Promo />
       <Techs />
       <Portfolio />
       <NavTab />
+      </main>
       <Footer />
     </>
   );

@@ -17,8 +17,8 @@
 }
 .card__photography {
   width: 270px;
-height: 151px;
-  
+  height: 151px;
+
   flex-shrink: 0;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
@@ -32,53 +32,53 @@ height: 151px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  padding: 0px 0 14px 12px;
+  padding: 10px 0 14px 12px;
 }
 .card__container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.card__button {
-  width: 30px;
-  height: 30px;
+.card__button-delete {
+  width: 16px;
+  height: 16px;
   background-position: center;
   background-repeat: no-repeat;
   border: 0;
   background-color: white;
-  margin: 6px 6px 14px 0;
+  margin: 14px 12px 0px 0px;
   padding: 0;
-  background-image: url(../../../images/checkbox.svg);
+  background-image: url(../../../images/card__button-delete.svg);
+  transition: all 0.2s linear;
 }
-.card__button-active {
-  background-image: url(../../../images/checkbox-active.svg);
-  width: 30px;
-  height: 30px;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 0;
-  background-color: white;
-  margin: 6px 6px 14px 0;
-  padding: 0;
+.card__button-delete:hover{
+  opacity: 0.7;
 }
+
 @media screen and (max-width: 1200px) {
-  .card__photography{
+  .card__photography {
     width: 339px;
   }
-  .card__photography{
-    width:339px;
+  .card__photography {
+    width: 339px;
     height: 190px;
   }
-  .card__title{
+  .card__title {
     padding: 10px 0 0 12px;
   }
+  .card__movie-time{
+    padding: 0px 0 14px 12px;
+  }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 760px) {
   .card {
     min-width: 300px;
   }
-  .card__photography{
+  .card__movie-time{
+    padding: 0px 0 0px 12px;
+  }
+  .card__photography {
     width: 300px;
-  height: 168px;
+    height: 168px;
   }
 }

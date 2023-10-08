@@ -13,14 +13,14 @@ input:focus {
   flex-direction: row;
   justify-content: space-between;
 }
-.search-form__group-left {
+.search-form__group1 {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
 }
 
-.search-form__group-right {
+.search-form__group2 {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -61,7 +61,26 @@ input:focus {
 .search-form__button2:hover {
   opacity: 0.8;
 }
-
+.search-form__switch{
+  width: 36px;
+  height: 20px;
+  margin: auto 15px;
+  background-image: url(../../../images/search-form/smalltumb.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  background-color: transparent;
+}
+.search-form__switch-no-active{
+  width: 36px;
+  height: 20px;
+  margin: auto 15px;
+  background-image: url(../../../images/search-form/smalltumb-no-active.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  background-color: transparent;
+}
 .search-form__button2 {
   background-color: transparent;
   border: 0;
@@ -104,7 +123,7 @@ input:focus {
   .search-form__button2 {
     display: none;
   }
-  .search-form__group-right {
+  .search-form__group2 {
     margin: 50px auto;
   }
   .search-form__span {
