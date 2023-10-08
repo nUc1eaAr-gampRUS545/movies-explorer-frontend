@@ -1,0 +1,62 @@
+.profile {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+}
+.profile__title {
+  color: #000;
+  text-align: center;
+  font-family: "Inter", "Arial ", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.profile__info-cell {
+  width: 500px;
+  box-sizing: border-box;
+  height: 70px;
+  display: flex;
+  border-bottom: 1px solid rgb(156, 156, 156);
+  justify-content: space-between;
+  margin-top: 17px;
+}
+.profile__info-cell-no-border {
+  border-bottom: 0 !important;
+
+}
+.profile__info:last-child {
+  margin: 0;
+  border-bottom: 5px solid rgb(255, 255, 255);
+}
+.profile__buttons{
+  margin-top: 210px;
+  display: flex;
+  flex-direction: column;
+}
+.profile__button1{
+  color: #000;
+  text-align: center;
+  font-family: "Inter", "Arial ", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: 0;
+  background-color: transparent;
+  margin-bottom: 10px;
+}
+.profile__button2{
+  color: #ff0000;
+  text-align: center;
+  font-family: "Inter", "Arial ", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: 0;
+  background-color: transparent;
+}
