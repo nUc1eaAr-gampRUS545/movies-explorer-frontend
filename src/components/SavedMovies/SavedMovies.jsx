@@ -9,11 +9,11 @@ import apiSavedMovies from "../../utils/MainApi";
 export default function SavedMovies({ openMenu, closeMenu, flag,isLoggetIn }) {
   const [films, setFilm] = useState([]);
   useEffect(() => {
-    isLoggetIn &&
+    
     apiSavedMovies.getSavedMovies((data) => {
       setFilm(data);
     });
-  },[isLoggetIn]);
+  },[]);
  
   return (
     <>
