@@ -1,3 +1,6 @@
+input:focus {
+  outline: 1px solid rgb(0, 81, 255);
+}
 .profile {
   display: flex;
   align-content: center;
@@ -26,18 +29,17 @@
 }
 .profile__info-cell-no-border {
   border-bottom: 0 !important;
-
 }
 .profile__info:last-child {
   margin: 0;
   border-bottom: 5px solid rgb(255, 255, 255);
 }
-.profile__buttons{
+.profile__buttons {
   margin-top: 210px;
   display: flex;
   flex-direction: column;
 }
-.profile__button1{
+.profile__button1 {
   color: #000;
   text-align: center;
   font-family: "Inter", "Arial ", sans-serif;
@@ -49,7 +51,7 @@
   background-color: transparent;
   margin-bottom: 10px;
 }
-.profile__button2{
+.profile__button2 {
   color: #ff0000;
   text-align: center;
   font-family: "Inter", "Arial ", sans-serif;
@@ -59,4 +61,16 @@
   line-height: normal;
   border: 0;
   background-color: transparent;
+}
+.profile__info-cell-input {
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+  color: #000;
+  text-align: right;
+  font-family: "Inter";
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

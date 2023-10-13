@@ -61,6 +61,9 @@
 .register__saved:hover {
   opacity: 0.8;
 }
+.register__saved-no-active{
+  background-color: #676d88;
+}
 .register__info {
   text-align: center;
   margin: 16px 0 0 0;

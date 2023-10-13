@@ -1,20 +1,16 @@
 import "./Login.css";
 import React, { useState } from "react";
+import useInput from "../Validation/Validation";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserAuthorization from "../../utils/userAuth";
 import Preloader from "../Movies/Preloader/Preloader";
 import Input from "../Input/Input";
 export default function Login({ handleLogged }) {
   const navigate = useNavigate();
-  const [formValue, setFormValue] = React.useState({
-    email: "",
-    password: "",
-  });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValue({ ...formValue, [name]: value });
-  };
   const [message, setMessage] = useState("");
+  let email = useInput("", { isEmpty: true, minLength: 6, isEmail: false });
+  let password = useInput("", { isEmpty: true, minLength: 4 });
+  let formObject = { email: email.formValue, password: password.formValue };
   const textError = (message) => {
     if (message === "Ошибка 401") {
       return "Вы ввели неправильный логин или пароль.";
@@ -23,13 +19,13 @@ export default function Login({ handleLogged }) {
       return "При регистрации пользователя произошла ошибка.";
     }
   };
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    UserAuthorization.authorization(formValue)
+    UserAuthorization.authorization(formObject)
       .then((data) => {
-        console.log(data);
-        handleLogged();
         navigate("/");
+        handleLogged();
         setMessage(data);
       })
       .catch((err) => {
@@ -48,18 +44,25 @@ export default function Login({ handleLogged }) {
           type="email"
           name="email"
           message={message}
-          onChange={handleChange}
-          value={formValue.email}
+          onChange={(e) => email.onChange(e)}
+          onBlur={(e) => email.onBlur(e)}
+          value={email.value}
         ></Input>
+        {email.isEmailError && email.value !== "" && (
+          <div style={{ color: "red" }}>Неверная электронная почта</div>
+        )}
+
         <p className="login__caption">Пароль</p>
         <Input
           type="password"
           name="password"
           message={message}
-          value={formValue.password}
-          onChange={handleChange}
-          required
+          value={password.value}
+          onChange={(e) => password.onChange(e)}
         ></Input>
+        {password.minLengthError && email.value !== "" && (
+          <div style={{ color: "red" }}>Неверный формат пороля</div>
+        )}
         <div
           className={
             message !== ""
@@ -69,7 +72,15 @@ export default function Login({ handleLogged }) {
         >
           {textError(message)}
         </div>
-        <button className="login__saved"  type="submit" >
+        <button
+          className={
+            email.inputValid || password.inputValid
+              ? "login__saved login__saved-no-active"
+              : "login__saved"
+          }
+          disabled={email.inputValid || password.inputValid ? true : false}
+          type="submit"
+        >
           Войти
         </button>
       </form>

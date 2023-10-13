@@ -1,20 +1,20 @@
 import "./Register.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserAuthorization from "../../utils/userAuth";
+import useInput from "../Validation/Validation";
 import React, { useState } from "react";
 import Input from "../Input/Input";
 export default function Register() {
   const [message,setMessage]=useState('');
-  const [formValue, setFormValue] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const navigate = useNavigate();
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
-    setFormValue({ ...formValue, [name]: value });
+  let email=useInput('',{isEmpty:true,minLength:6,isEmail:false});
+  let password=useInput('',{isEmpty:true,minLength:4});
+  let name=useInput('',{isEmpty:true,minLength:4,name:false});
+  const formObject={
+    name: name.formValue,
+    email: email.formValue,
+    password:password.formValue,
   };
+  const navigate = useNavigate();
   const textError=(message)=>{
      if(message==="Ошибка 409"){
       return "Пользователь с таким email уже существует.";
@@ -25,7 +25,7 @@ export default function Register() {
   }
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    UserAuthorization.registr(formValue)
+    UserAuthorization.registr(formObject)
       .then((data) => {
         console.log(data)
         setMessage(data);
@@ -46,29 +46,31 @@ export default function Register() {
         <Input
           type="text"
           name="name"
-          value={formValue.name}
+          value={name.value}
           message={message}
-          onChange={handleChange}
+          onChange={e=>name.onChange(e)}
         ></Input>
+        {(name.nameError && name.value!=="") &&<div className="register__input-error" >Поле name содержит только латиницу, кириллицу, пробел или дефис.</div>}
         <p className="register__caption">E-mail</p>
         <Input
            type="email"
            name="email"
            message={message}
-           onChange={handleChange}
-           value={formValue.email}
+           onChange={e=>email.onChange(e)}
+           value={email.value}
         ></Input>
+        {(email.isEmailError && email.value!=="") &&<div className="register__input-error" style={{color:"red"}}>Неверная электронная почта</div>}
         <p className="register__caption">Пароль</p>
         <Input
            type="password"
            name="password"
            message={message}
-           value={formValue.password}
-           onChange={handleChange}
-           required
+           value={password.value}
+           onChange={e=>password.onChange(e)}
         ></Input>
+        {(password.minLengthError && password.value!=="") &&<div className="register__input-error">Неверный формат пороля</div>}
      <p className="register__input-error">{textError(message)}</p>
-      <button className="register__saved" type="submit">
+     <button className={email.inputValid || password.inputValid || name.inputValid ? "register__saved register__saved-no-active" : "register__saved"} disabled={email.inputValid || password.inputValid ? true :false}  type="submit" >
         Зарегестрироваться
       </button> </form>
       <div className="register__info">
