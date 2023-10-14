@@ -9,7 +9,7 @@ export default function Login({ handleLogged }) {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   let email = useInput("", { isEmpty: true, minLength: 6, isEmail: false });
-  let password = useInput("", { isEmpty: true, minLength: 4 });
+  let password = useInput("", { isEmpty: true, minLength: 3 });
   let formObject = { email: email.formValue, password: password.formValue };
   const textError = (message) => {
     if (message === "Ошибка 401") {
@@ -49,7 +49,7 @@ export default function Login({ handleLogged }) {
           value={email.value}
         ></Input>
         {email.isEmailError && email.value !== "" && (
-          <div style={{ color: "red" }}>Неверная электронная почта</div>
+          <div className="login__input-error ">Неверная электронная почта</div>
         )}
 
         <p className="login__caption">Пароль</p>
@@ -61,7 +61,7 @@ export default function Login({ handleLogged }) {
           onChange={(e) => password.onChange(e)}
         ></Input>
         {password.minLengthError && email.value !== "" && (
-          <div style={{ color: "red" }}>Неверный формат пороля</div>
+          <div className="login__input-error ">Неверный формат пороля</div>
         )}
         <div
           className={
