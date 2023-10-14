@@ -29,7 +29,7 @@ function App() {
         setUserData(data);
         navigate("/");
       })
-      .catch((data) => {
+      .catch(() => {
         setLoggedIn(false);
         setUserData("");
         navigate("/");
@@ -40,7 +40,6 @@ function App() {
     <CurrentUserContext.Provider value={isUserData}>
       <Routes>
         <Route
-          exact
           path="/"
           element={
             <Main
@@ -63,7 +62,8 @@ function App() {
                   closeMenu={() => setMenu(false)}
                   openMenu={() => setMenu(true)}
                   flag={menu}
-                  setLoggedIn={(data)=>setLoggedIn(data)}
+                  setLoggedIn={()=>setLoggedIn(false)}
+                  setUserData={(data)=>setUserData(data)}
                 />
               }
             />

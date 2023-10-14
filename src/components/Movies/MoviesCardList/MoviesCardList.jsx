@@ -1,145 +1,136 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Preloader from "../Preloader/Preloader";
-import Button from "../../Buttons/Button";
 import "./MoviesCardList.css";
-export default function MoviesCardList({
-  films,
-  savedMovies,
-  isLoading,
-  search,
-  checkBox,
-  handleEditDeleteCardClick,
-  handleEditLikeCardClick
-}) {
- 
-  const [slicedArray,setSlicedArray]=useState([])
+export default function MoviesCardList({...props}) {
+  const [numberCards, setNumberCards] = useState(16);
+  const [windowWidth, setWindowWidth] = useState(null);
+  const [shortFilm, setshortFilm] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [storageMovie, setStorageMovie] = useState([]);
+  const [storageShortMovie, setStorageShortMovie] = useState([]);
   const savedFilmsId = [];
   const saveId = () => {
-    savedMovies.map((movie) => savedFilmsId.push(movie.nameRU, movie._id));
+    props.savedMovies.map((movie) => savedFilmsId.push(movie.nameRU, movie._id));
   };
   saveId();
   function handleDeleteCard(data) {
-    const card = savedMovies.filter((movie) => movie.nameRU === data.nameRU);
-    handleEditDeleteCardClick(card[0]);
+    const card = props.savedMovies.filter((movie) => movie.nameRU === data.nameRU);
+    props.handleEditDeleteCardClick(card[0]);
   }
-  
-  return isLoading ? (
+  const getScreenWidth = () => setWindowWidth(window.innerWidth);
+  setTimeout(getScreenWidth, 2000);
+  useEffect(() => {
+    setStorageMovie(JSON.parse(localStorage.getItem("Movies")));
+    setStorageShortMovie(JSON.parse(localStorage.getItem("shortMovies")))
+    getScreenWidth();
+   
+  }, []);
+  const clickButtonAddCards = () => {
+    if (windowWidth > 1200) {
+      getScreenWidth();
+      setNumberCards(numberCards + 4);
+    }
+    if (windowWidth < 1200 && windowWidth > 761) {
+      getScreenWidth();
+      setNumberCards(numberCards + 2);
+    }
+    if (windowWidth < 761 && windowWidth < 1200) {
+      getScreenWidth();
+      setNumberCards(numberCards + 1);
+    }
+  };
+  useEffect(() => {
+    if (props.search !== "" || props.search !== " ") {
+      setshortFilm(
+        props.films.filter(
+          (card) => card.nameRU.includes(props.search) && card.duration < 41 && card
+        )
+      );
+      setMovies(props.films.filter((card) => card.nameRU.includes(props.search) && card));
+    
+    }
+  }, [props.search]);
+
+  return props.isLoading ? (
     <Preloader />
   ) : (
     <>
       <section className="card-list">
-        {slicedArray.map((card) => {
-          const name = card.nameRU;
-          const duration = card.duration;
-
-          if (name.includes(search) === "" && !checkBox) {
-            return (
+        {props.checkBox
+          ? shortFilm.map((card) => {
+              localStorage.setItem("shortMovies", JSON.stringify(shortFilm));
+              return (
+                <MoviesCard
+                  card={card}
+                  liked={savedFilmsId.includes(card.nameRU)}
+                  handleDeleteCard={(card) => handleDeleteCard(card)}
+                  handleEditLikeCardClick={(data) =>
+                    props.handleEditLikeCardClick(data)
+                  }
+                />
+              );
+            })
+          : movies.slice(0, numberCards).map((card) => {
+              localStorage.setItem("Movies", JSON.stringify(movies));
+              return (
+                <MoviesCard
+                  card={card}
+                  liked={savedFilmsId.includes(card.nameRU)}
+                  handleDeleteCard={(card) => handleDeleteCard(card)}
+                  handleEditLikeCardClick={(data) =>
+                    props.handleEditLikeCardClick(data)
+                  }
+                />
+              );
+            })}
+        {props.checkStorage &&
+          storageMovie.slice(0, numberCards).map((card) => {
+            
+            return !props.checkBox && (
               <MoviesCard
                 card={card}
                 liked={savedFilmsId.includes(card.nameRU)}
                 handleDeleteCard={(card) => handleDeleteCard(card)}
-                handleEditLikeCardClick={(data)=>handleEditLikeCardClick(data)}
+                handleEditLikeCardClick={(data) =>
+                  props.handleEditLikeCardClick(data)
+                }
               />
             );
-          }
-
-          if (checkBox && name.includes(search) !== "") {
-            return (
-              duration <= 40 &&
-              name.includes(search) && (
-                <MoviesCard
-                  card={card}
-                  liked={savedFilmsId.includes(card.nameRU)}
-                  handleDeleteCard={(card) => handleDeleteCard(card)}
-                  handleEditLikeCardClick={(data)=>handleEditLikeCardClick(data)}
-                />
-              )
+          })}
+           {props.checkStorage &&
+          storageShortMovie.slice(0, numberCards).map((card) => {
+            
+            return props.checkBox && (
+              <MoviesCard
+                card={card}
+                liked={savedFilmsId.includes(card.nameRU)}
+                handleDeleteCard={(card) => handleDeleteCard(card)}
+                handleEditLikeCardClick={(data) =>
+                  props.handleEditLikeCardClick(data)
+                }
+              />
             );
-          }if (checkBox && name.includes(search) === "") {
-            return (
-              duration <= 40 &&
-              (
-                <MoviesCard
-                  card={card}
-                  liked={savedFilmsId.includes(card.nameRU)}
-                  handleDeleteCard={(card) => handleDeleteCard(card)}
-                  handleEditLikeCardClick={(data)=>handleEditLikeCardClick(data)}
-                />
-              )
-            );
-          }
+          })}
           
-          if (
-            name.includes(search) !== "" &&
-            !checkBox &&
-            savedMovies.includes(card)
-          ) {
-            return (
-              name.includes(search) && (
-                <MoviesCard
-                  card={card}
-                  liked={savedFilmsId.includes(card.nameRU)}
-                  handleDeleteCard={(card) => handleDeleteCard(card)}
-                  handleEditLikeCardClick={(data)=>handleEditLikeCardClick(data)}
-                />
-              )
-            );
-          }
-          if (
-            name.includes(search) !== "" &&
-            !checkBox &&
-            !savedMovies.includes(card)
-          ) {
-            return (
-              name.includes(search) && (
-                <MoviesCard
-                  card={card}
-                  liked={savedFilmsId.includes(card.nameRU)}
-                  handleDeleteCard={(card) => handleDeleteCard(card)}
-                  handleEditLikeCardClick={(data)=>handleEditLikeCardClick(data)}
-                />
-              )
-            );
-          }
-
-          if (
-            name.includes(search) === "" &&
-            !checkBox &&
-            !savedMovies.includes(card)
-          ) {
-            return (
-              <MoviesCard
-                card={card}
-                liked={savedFilmsId.includes(card.nameRU)}
-                handleDeleteCard={(card) => handleDeleteCard(card)}
-                handleEditLikeCardClick={(data)=>handleEditLikeCardClick(data)}
-
-              />
-            );
-          }
-        })}
       </section>
       <div className="cards-footer">
-        <Button films={films} checkBox={checkBox} setSlicedArray={(data)=>setSlicedArray(data)} search={search}/>
+        {numberCards < movies.length ? (
+          <button className={"cards-add"} onClick={() => clickButtonAddCards()}>
+            Ещё
+          </button>
+        ) : (
+          ""
+        )}
+        
+        {movies.length === 0 || shortFilm.length === 0 || storageMovie.length === 0 || storageShortMovie.length === 0 ? (
+          <div className="movies-eror">
+            К сожалению по вашему запросу ничего не найдено
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
 }
-/* if(name.includes(search) === "" && !checkBox && savedMovies.includes(card)){
-          return <MoviesCard card={card} liked={true}/>
-         }
-
-         if(checkBox && name.includes(search) !== "" ){
-          return duration<=40 &&  name.includes(search)  && (<MoviesCard card={card} />)
-         }
-         if(name.includes(search) !=="" && !checkBox && savedMovies.includes(card)){
-          return name.includes(search) && <MoviesCard card={card} liked={true}/>
-         }
-         if(name.includes(search) !=="" && !checkBox && !savedMovies.includes(card)){
-          return name.includes(search) && <MoviesCard card={card} liked={false}/>
-         }
-        
-         if(name.includes(search) === "" && !checkBox && !savedMovies.includes(card)){
-          return <MoviesCard card={card} liked={false}/>
-         }*/

@@ -7,23 +7,29 @@ import { useState } from "react";
 export default function Profile({ isUserData, ...props }) {
   const [formValue, setFormValue] = useState({
     about:`${isUserData.email}`,
-    
+
     name: `${isUserData.name}`,
   });
+  const [save,setSave]=useState(false)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };
   const handleSubmit = () => {
-    api.updateUserInfo(formValue);
+    api.updateUserInfo(formValue).then((data)=>{
+      props.setUserData(data)
+      setSave(true);
+      setTimeout(()=>setSave(false),3000)
+    })
     setRedaction(false)
   };
   const [redaction, setRedaction] = useState(false);
   const navigate = useNavigate();
   const clearCookey = () => {
-    api.signOut();
-    navigate("/login");
-    props.setLoggedIn(false)
+    api.signOut().then(()=>{
+      navigate("/login");
+    props.setLoggedIn()
+    })
   };
 
   return (
@@ -55,8 +61,8 @@ export default function Profile({ isUserData, ...props }) {
                 className="profile__info-cell-input"
                 type="text"
                 onChange={handleChange}
-                name="email"
-                value={redaction ? formValue.email : `${isUserData.email}`}
+                name="about"
+                value={redaction ? formValue.about : `${isUserData.email}`}
               ></input>
             ) : (
               <span className="profile__info-cell-input">
@@ -65,6 +71,7 @@ export default function Profile({ isUserData, ...props }) {
             )}
           </div>
           <div className="profile__buttons">
+            { <div className={ save ? "message" :  'message message-no-active'}>Профиль успешно обновлён!</div>}
             {redaction ? (
               <button className="profile__button1" type="button" onClick={handleSubmit}>
                 Сохранить

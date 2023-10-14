@@ -104,7 +104,7 @@ input:focus {
 @media screen and (max-width: 1200px) {
   .search-form {
     max-width: 708px;
-    margin: 86px auto 190px auto;
+    margin: 86px auto 20px auto;
   }
   .search-form__button1 {
     display: flex;

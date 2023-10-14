@@ -6,7 +6,6 @@ export default function SearchForm({searchInputMovies, checkBox, clickCheckBox})
   const [searchInput, setSearchInput] = useState("");
   const handleChange = (e) => {
     setSearchInput(e.target.value);
-    console.log(searchInput);
   };
 
   const saveSearchInput = () => {
@@ -21,7 +20,7 @@ export default function SearchForm({searchInputMovies, checkBox, clickCheckBox})
           type="text"
           className="search-form__input"
           placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Фильмы"
-          required
+         
         ></input>
         <button
           className=" search-form__button1"

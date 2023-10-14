@@ -6,12 +6,13 @@ import Footer from "../Footer/Footer";
 import React, { useEffect, useState } from "react";
 import movies from "../../utils/MoviesApi";
 import {useNavigate } from "react-router-dom";
-export default function Movies({ openMenu, closeMenu, flag, isLoggetIn }) {
+export default function Movies({...props}) {
   const [films, setFilm] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchInputMovies, setSearchInput] = useState("");
   const [savedFilms, setSavedFilm] = useState([]);
   const [checkBox, setCheckBox] = useState(false);
+  const [checkStorage,setCheckStorage]=useState(false);
   const navigate=useNavigate()
   useEffect(() => {
     movies
@@ -25,17 +26,24 @@ export default function Movies({ openMenu, closeMenu, flag, isLoggetIn }) {
         setLoading(false);
       });
       
-  }, [isLoading]);
-
+  }, [isLoading]); 
   useEffect(() => {
     api
       .getSavedMovies()
       .then((data) => {
-        setSavedFilm( data);
+        setSavedFilm(data);
       })
       .catch((err) => {
         navigate("/error")
       });
+  }, []);
+  useEffect(() => {
+    const buttonState = localStorage.getItem('checkBox');
+    if (buttonState === 'true') {
+      setCheckBox(true);
+    } else {
+      setCheckBox(false);
+    }
   }, []);
   const handleEditDeleteCardClick = (card) => {
     api
@@ -62,16 +70,14 @@ export default function Movies({ openMenu, closeMenu, flag, isLoggetIn }) {
   return (
     <>
       <Header
-        openMenu={openMenu}
-        closeMenu={closeMenu}
-        flag={flag}
-        isLoggetIn={isLoggetIn}
+        {...props}
       />
       <main>
         <SearchForm
           searchInputMovies={(data) => setSearchInput(data)}
           checkBox={checkBox}
           clickCheckBox={(data) => setCheckBox(data)}
+          setCheckStorage={()=>setCheckStorage(true)}
         />
         <MoviesCardList
           films={films}
@@ -81,6 +87,8 @@ export default function Movies({ openMenu, closeMenu, flag, isLoggetIn }) {
           checkBox={checkBox}
           handleEditDeleteCardClick={handleEditDeleteCardClick}
           handleEditLikeCardClick={handleEditLikeCardClick}
+          checkStorage={checkStorage}
+          setSearchInput={setSearchInput}
         />
       </main>
       <Footer />

@@ -51,6 +51,21 @@ input:focus {
   background-color: transparent;
   margin-bottom: 10px;
 }
+.message{
+  color: #000;
+  text-align: center;
+  font-family: "Inter", "Arial ", sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0 auto 13px auto;
+  line-height: normal;
+  border: 0;
+  transition: all 1s linear;
+}
+.message-no-active{
+  opacity: 0;
+}
 .profile__button2 {
   color: #ff0000;
   text-align: center;

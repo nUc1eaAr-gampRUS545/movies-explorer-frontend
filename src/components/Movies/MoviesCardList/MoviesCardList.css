@@ -14,6 +14,16 @@
   justify-content: center;
   margin: 50px 0 80px 0;
 }
+.movies-eror{
+  color: #A0A0A0;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: 'Inter';
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 @media screen and (max-width: 1200px) {
   .card-list {
     grid-template-columns: repeat(2, 339px);
