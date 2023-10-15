@@ -40,10 +40,10 @@ const useInput = (initionalValue,validations) => {
   const [isDirty, setIsDirty] = useState(false);
   const [formValue, setFormValue] = useState({})
   const valid =useValidation(value,validations)
-  const onChange = (e) => {
-    setValue(e.target.value);
-    const {value} = e.target;
-    setFormValue(value);
+  const onChange = (data) => {
+    setValue(data);
+    
+    setFormValue(data);
   };
   const onBlur = (e) => {
     setIsDirty(true);

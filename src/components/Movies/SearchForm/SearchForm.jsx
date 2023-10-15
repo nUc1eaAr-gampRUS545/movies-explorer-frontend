@@ -1,7 +1,7 @@
 import "./SearchForm.css";
 import lupa from "../../../images/search-form/lupa.svg";
 import useInput from "../../Validation/Validation";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 
 export default function SearchForm({
   searchInputMovies,
@@ -11,7 +11,8 @@ export default function SearchForm({
 }) {
   const [viewStorage, setViewStorage] = useState(false);
   const input = useInput("", {});
-
+  useEffect(()=>localStorage.setItem('checking',false),[]);
+  
   const saveSearchInput = () => {
     localStorage.setItem("lastReq", input.value);
     searchInputMovies(input.value);
@@ -32,12 +33,10 @@ export default function SearchForm({
             type="text"
             className="search-form__input"
             placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Фильмы"
-            onChange={(e) => {setViewStorage(false);return input.onChange(e)}}
+            onChange={(e) => {setViewStorage(false);return input.onChange(e.target.value)}}
             onBlur={(e) => {setViewStorage(false);return input.onBlur(e)}}
             onFocus={()=>setViewStorage(true)}
-   
             value={input.value}
-            id="input"
           ></input>
           <button
             className={
@@ -85,13 +84,15 @@ export default function SearchForm({
         <div
           className={
             viewStorage ? "form-hint" : "form-hint-no-active form-hint"
-          }
-        >
+          }>
           <button
             className="storedge-button"
             onClick={() => {
+              localStorage.setItem('checking',true);
               setViewStorage(false);
               setCheckStorage();
+              input.onChange(localStorage.getItem("lastReq"))
+              
             }}
           >
             {localStorage.getItem("lastReq")}

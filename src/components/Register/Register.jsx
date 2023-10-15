@@ -48,7 +48,7 @@ export default function Register() {
           name="name"
           value={name.value}
           message={message}
-          onChange={e=>name.onChange(e)}
+          onChange={e=>name.onChange(e.target.value)}
         ></Input>
         {(name.nameError && name.value!=="") &&<div className="register__input-error" >Поле name содержит только латиницу, кириллицу, пробел или дефис.</div>}
         <p className="register__caption">E-mail</p>
@@ -56,7 +56,7 @@ export default function Register() {
            type="email"
            name="email"
            message={message}
-           onChange={e=>email.onChange(e)}
+           onChange={e=>email.onChange(e.target.value)}
            value={email.value}
         ></Input>
         {(email.isEmailError && email.value!=="") &&<div className="register__input-error" style={{color:"red"}}>Неверная электронная почта</div>}
@@ -66,7 +66,7 @@ export default function Register() {
            name="password"
            message={message}
            value={password.value}
-           onChange={e=>password.onChange(e)}
+           onChange={e=>password.onChange(e.target.value)}
         ></Input>
         {(password.minLengthError && password.value!=="") &&<div className="register__input-error">Неверный формат пороля</div>}
      <p className="register__input-error">{textError(message)}</p>

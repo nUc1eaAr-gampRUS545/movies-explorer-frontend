@@ -44,7 +44,7 @@ export default function Login({ handleLogged }) {
           type="email"
           name="email"
           message={message}
-          onChange={(e) => email.onChange(e)}
+          onChange={(e) => email.onChange(e.target.value)}
           onBlur={(e) => email.onBlur(e)}
           value={email.value}
         ></Input>
@@ -58,7 +58,7 @@ export default function Login({ handleLogged }) {
           name="password"
           message={message}
           value={password.value}
-          onChange={(e) => password.onChange(e)}
+          onChange={(e) => password.onChange(e.target.value)}
         ></Input>
         {password.minLengthError && email.value !== "" && (
           <div className="login__input-error ">Неверный формат пороля</div>

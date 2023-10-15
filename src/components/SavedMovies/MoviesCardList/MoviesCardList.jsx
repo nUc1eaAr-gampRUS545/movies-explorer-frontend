@@ -1,90 +1,48 @@
-
 import Preloader from "../../Movies/Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { useEffect, useState } from "react";
 import "./MoviesCardList.css";
-export default function MoviesCardList({savedFilms,isLoading,deleteMovies,search,checkBox}){
-    return( isLoading ? <Preloader/> :
+export default function MoviesCardList({ ...props }) {
+  return props.isLoading ? (
+    <Preloader />
+  ) : (
     <section className="card-list">
-        {savedFilms.map((card) => {
-          const name = card.nameRU || card.nameEN;
-          const duration = card.duration;
-
-          if (name.includes(search) === "" && !checkBox) {
-            return (
+      {props.savedFilms.map((card) => {
+        const name = card.nameRU;
+        const duration = card.duration;
+        if (props.checkBox && name.includes(props.search) !== "") {
+          return (
+            duration <= 40 &&
+            name.includes(props.search) && (
               <MoviesCard
-              card={card} key={card._id} deleteCard={deleteMovies}/>
-              
-            );
-          }
-
-          if (checkBox && name.includes(search) !== "") {
-            return (
-              duration <= 40 &&
-              name.includes(search) && (
-                <MoviesCard
-                card={card} key={card._id} deleteCard={deleteMovies}/>
-                
-              )
-            );
-          }if (checkBox && name.includes(search) === "") {
-            return (
-              duration <= 40 &&
-              (
-                <MoviesCard
-              card={card} key={card._id} deleteCard={deleteMovies}/>
-              
-              )
-            );
-          }
-          
-          if (
-            name.includes(search) !== "" &&
-            !checkBox &&
-            savedFilms.includes(card)
-          ) {
-            return (
-              name.includes(search) && (
-                <MoviesCard
-              card={card} key={card._id} deleteCard={deleteMovies}/>
-              
-              )
-            );
-          }
-          if (
-            name.includes(search) !== "" &&
-            !checkBox &&
-            !savedFilms.includes(card)
-          ) {
-            return (
-              name.includes(search) && (
-                <MoviesCard
-              card={card} key={card._id} deleteCard={deleteMovies}/>
-              
-              )
-            );
-          }
-
-        
-        })}
-      </section>
-    )
-
-}
-/*<section className="card-list">
-    {savedFilms.map((card) => {
-       const name=card.nameRU;
-       const duration=card.duration;
-       if(checkBox && name.includes(search)!==""){
-        //return name.includes(search) &&  && <MoviesCard card={card} />})
-        return duration<=40 &&  name.includes(search)  && (<MoviesCard card={card} key={card._id} deleteCard={deleteMovies}/>)
-       }
-       if(name.includes(search)!== "" && !checkBox){
-        return name.includes(search) && <MoviesCard card={card} key={card._id} deleteCard={deleteMovies}/>
-       } 
-       if(name.includes(search)=== "" && !checkBox){
-        return <MoviesCard card={card} key={card._id} deleteCard={deleteMovies}/>
-       }
+                card={card}
+             
+                deleteCard={props.deleteMovies}
+              />
+            )
+          );
+        }
+        if (name.includes(props.search) !== "" && !props.checkBox) {
+          return (
+            name.includes(props.search) && (
+              <MoviesCard
+                card={card}
+             
+                deleteCard={props.deleteMovies}
+              />
+            )
+          );
+        }
+        if (name.includes(props.search) === "" && !props.checkBox) {
+          return (
+            <MoviesCard
+              card={card}
        
-    
-    })}
-    </section>*/
+              deleteCard={props.deleteMovies}
+            />
+          );
+        }
+      })}
+    </section>
+  );
+}

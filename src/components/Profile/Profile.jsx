@@ -6,9 +6,9 @@ import api from "../../utils/MainApi";
 import { useState } from "react";
 export default function Profile({ isUserData, ...props }) {
   const [formValue, setFormValue] = useState({
-    about:`${isUserData.email}`,
-
     name: `${isUserData.name}`,
+    about:`${isUserData.email}`,
+    
   });
   const [save,setSave]=useState(false)
   const handleChange = (e) => {
