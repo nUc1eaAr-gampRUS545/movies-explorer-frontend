@@ -34,7 +34,7 @@ function App() {
         setUserData("");
         navigate("/");
       });
-  }, []);
+  }, [isLoggetIn]);
 
   return (
     <CurrentUserContext.Provider value={isUserData}>
