@@ -27,7 +27,8 @@ export default function SearchForm({
   return (
     <div className="section">
       <section className="search-form">
-        <form className="search-form__group1">
+     
+        <div className="search-form__group1">
           <img className="search-form__lupa" src={lupa} alt="кнопка" />
           <input
             type="text"
@@ -49,7 +50,7 @@ export default function SearchForm({
           >
             {" "}
           </button>
-        </form>
+        </div>
         <div className="search-form__group2">
           <button
             className={
@@ -74,6 +75,7 @@ export default function SearchForm({
 
           <span className="search-form__span">Короткометражки</span>
         </div>
+      
       </section>
       {input.isDirty
         ?  (
