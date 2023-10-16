@@ -4,13 +4,18 @@ import UserAuthorization from "../../utils/userAuth";
 import useInput from "../Validation/Validation";
 import React, { useState } from "react";
 import Input from "../Input/Input";
-export default function Register() {
+import api from "../../utils/MainApi";
+export default function Register({handleLogged}) {
   const [message,setMessage]=useState('');
   let email=useInput('',{isEmpty:true,minLength:6,isEmail:false});
   let password=useInput('',{isEmpty:true,minLength:4});
   let name=useInput('',{isEmpty:true,minLength:4,name:false});
   const formObject={
     name: name.formValue,
+    email: email.formValue,
+    password:password.formValue,
+  };
+  const formObjectAutorization={
     email: email.formValue,
     password:password.formValue,
   };
@@ -23,13 +28,19 @@ export default function Register() {
       return "При регистрации пользователя произошла ошибка.";
      }
   }
+  const authorization=()=>{
+    handleLogged();
+    UserAuthorization.authorization(formObjectAutorization);
+    
+   
+  }
   const handleSubmit = (evt) => {
     evt.preventDefault();
     UserAuthorization.registr(formObject)
       .then((data) => {
-        console.log(data)
         setMessage(data);
-        navigate("/login");
+        authorization();
+
       })
       .catch((err) => {
         setMessage(err);

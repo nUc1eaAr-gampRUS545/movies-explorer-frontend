@@ -36,7 +36,7 @@ export default function Movies({...props}) {
       .catch((err) => {
         navigate("/error")
       });
-  }, []);
+  }, [props.isLoggedIn]);
   useEffect(() => {
     const buttonState = localStorage.getItem('checkBox');
     if (buttonState === 'true') {

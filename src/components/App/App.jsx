@@ -27,7 +27,7 @@ function App() {
         }
         setLoggedIn(true);
         setUserData(data);
-        navigate("/");
+        navigate("/movies");
       })
       .catch(() => {
         setLoggedIn(false);
@@ -105,7 +105,7 @@ function App() {
           path="/login"
           element={<Login handleLogged={() => setLoggedIn(true)} />}
         />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register handleLogged={() => setLoggedIn(true)}/>} />
         <Route path="/error" element={<Error />} />
       </Routes>
     </CurrentUserContext.Provider>
