@@ -20,8 +20,8 @@ export default function MoviesCard({card,liked,handleDeleteCard,handleEditLikeCa
         setLike(true)
       }
      
-      const handleClickDelete=(data)=>{
-       handleDeleteCard(data);
+      const handleClickDelete=()=>{
+       handleDeleteCard(card);
         setLike(false)
       }
 
@@ -30,7 +30,7 @@ export default function MoviesCard({card,liked,handleDeleteCard,handleEditLikeCa
        <a href={card.trailerLink}><img  className="card__photography" src={serverUrl+card.image.url} alt={card.nameRU}></img></a>
        <div className="card__container">
        <h2 className="card__title">{card.nameRU}</h2>
-       <button className={like ? "card__button-active" : "card__button"} onClick={()=>like ? handleClickDelete(card) : likeCard()}></button>
+       <button className={like ? "card__button-active" : "card__button"} onClick={()=>like ? handleClickDelete() : likeCard()}></button>
        </div>
        <p className="card__movie-time">{calculationMovieTime(card.duration)}</p>
        

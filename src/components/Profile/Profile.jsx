@@ -27,7 +27,7 @@ export default function Profile({ isUserData, ...props }) {
   const navigate = useNavigate();
   const clearCookey = () => {
     api.signOut().then(()=>{
-      navigate("/login");
+      navigate("/");
     props.setLoggedIn()
     })
   };

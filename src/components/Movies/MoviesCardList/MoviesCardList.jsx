@@ -1,6 +1,7 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { React, useState, useEffect } from "react";
 import Preloader from "../Preloader/Preloader";
+import createKeys from "../../CreateKeys/CreateKeys";
 import "./MoviesCardList.css";
 export default function MoviesCardList({ ...props }) {
   const [numberCards, setNumberCards] = useState(16);
@@ -12,12 +13,14 @@ export default function MoviesCardList({ ...props }) {
   const [checking, setChecking] = useState(false);
   const savedFilmsId = [];
   const saveId = () => {
+    props.setFlagUpdating(true);
     props.savedMovies.map((movie) =>
       savedFilmsId.push(movie.nameRU, movie._id)
     );
   };
   saveId();
   function handleDeleteCard(data) {
+    saveId();
     const card = props.savedMovies.filter(
       (movie) => movie.nameRU === data.nameRU
     );
@@ -57,7 +60,7 @@ export default function MoviesCardList({ ...props }) {
       setshortFilm(
         props.films.filter(
           (card) =>
-            card.nameRU.includes(props.search) && card.duration < 41 && card
+            (card.nameRU.includes(props.search) && card.duration < 41) && card
         )
       );
       setMovies(
@@ -79,60 +82,70 @@ export default function MoviesCardList({ ...props }) {
         {props.checkBox 
           ? shortFilm.map((card) => {
               localStorage.setItem("shortMovies", JSON.stringify(shortFilm));
-              return (
+              return (card.nameRU.includes(props.search) && card.duration < 41) ?(
                 <MoviesCard
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
                   handleDeleteCard={(card) => handleDeleteCard(card)}
-                  handleEditLikeCardClick={(data) =>
-                    props.handleEditLikeCardClick(data)
+                  key={createKeys()}
+                  setFilm={data=>props.setFilm(data)}
+                  handleEditLikeCardClick={(data) =>{props.handleEditLikeCardClick(data);return saveId();}
+                    
                   }
                 />
-              );
+              ): ''
             })
           : movies.slice(0, numberCards).map((card) => {
+            
+            
               localStorage.setItem("Movies", JSON.stringify(movies));
-              return (
+              return (card.nameRU.includes(props.search)) ?(
                 <MoviesCard
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
                   handleDeleteCard={(card) => handleDeleteCard(card)}
+                  key={createKeys()}
+                  setFilm={data=>props.setFilm(data)}
                   handleEditLikeCardClick={(data) =>
                     props.handleEditLikeCardClick(data)
                   }
                 />
-              );
+              ): ''
             })}
-        {props.checkStorage &&
+        {props.checkStorage && !props.checkBox ?
           storageMovie.slice(0, numberCards).map((card) => {
             return (
-              card.nameRU.includes(props.search) !== "" && (
+               (
                 <MoviesCard
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
                   handleDeleteCard={(card) => handleDeleteCard(card)}
+                  key={createKeys()}
+                  setFilm={data=>props.setFilm(data)}
                   handleEditLikeCardClick={(data) =>
                     props.handleEditLikeCardClick(data)
                   }
                 />
               )
             );
-          })}
-        {props.checkStorage &&
-          storageShortMovie.slice(0, numberCards).map((card) => {
-            return (
+          }): 
+       
+          props.checkStorage && (storageShortMovie.slice(0, numberCards).map((card) => 
+            
               card.duration< 41 && (
                 <MoviesCard
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
                   handleDeleteCard={(card) => handleDeleteCard(card)}
+                  key={createKeys()}
+                  setFilm={data=>props.setFilm(data)}
                   handleEditLikeCardClick={(data) =>
                     props.handleEditLikeCardClick(data)
                   }
                 />
               )
-            );
-          })}
+            
+          ))}
       </section>
       <div className="cards-footer">
         {numberCards < movies.length && movies.length !== 0 ? (

@@ -20,7 +20,7 @@ export default function SavedMovies({...props}) {
         navigate("/error")
         setLoading(false)
       })
-  },[]);
+  },[props.isLoggedIn]);
   
   const handleEditDeleteCardClick = (card) => {
       api

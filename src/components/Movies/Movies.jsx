@@ -10,6 +10,7 @@ export default function Movies({...props}) {
   const [films, setFilm] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchInputMovies, setSearchInput] = useState("");
+  const [flagUpdating,setFlagUpdating]=useState(false);
   const [savedFilms, setSavedFilm] = useState([]);
   const [checkBox, setCheckBox] = useState(false);
   const [checkStorage,setCheckStorage]=useState(false);
@@ -27,6 +28,7 @@ export default function Movies({...props}) {
       });
       
   }, [isLoading]); 
+
   useEffect(() => {
     api
       .getSavedMovies()
@@ -37,6 +39,20 @@ export default function Movies({...props}) {
         navigate("/error")
       });
   }, [props.isLoggedIn]);
+
+
+  useEffect(() => {
+    api
+      .getSavedMovies()
+      .then((data) => {
+        setSavedFilm(data);
+      })
+      .catch((err) => {
+        navigate("/error")
+      });
+  }, [flagUpdating]);
+
+
   useEffect(() => {
     const buttonState = localStorage.getItem('checkBox');
     if (buttonState === 'true') {
@@ -46,6 +62,7 @@ export default function Movies({...props}) {
     }
   }, []);
   const handleEditDeleteCardClick = (card) => {
+    
     api
       .deleteMovies(card._id)
       .then((res) => {
@@ -59,10 +76,8 @@ export default function Movies({...props}) {
   const handleEditLikeCardClick = (card) => {
     api.savedMovies(card)
       .then((newCard) => {
-        setSavedFilm((state) =>
-          state.map((item) => (item._id === card._id ? newCard : item))
-        );
-      })
+        setSavedFilm([...savedFilms,newCard])})
+      
       .catch((err) => {
         navigate("/error")
       });
@@ -89,6 +104,7 @@ export default function Movies({...props}) {
           handleEditLikeCardClick={handleEditLikeCardClick}
           checkStorage={checkStorage}
           setSearchInput={setSearchInput}
+          setFlagUpdating={(data)=>setFlagUpdating(data)}
         />
       </main>
       <Footer />
