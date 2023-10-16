@@ -14,6 +14,7 @@ export default function SearchForm({
   useEffect(()=>localStorage.setItem('checking',false),[]);
   
   const saveSearchInput = () => {
+    localStorage.setItem('checking',false);
     localStorage.setItem("lastReq", input.value);
     searchInputMovies(input.value);
   };
