@@ -20,7 +20,7 @@ export default function SearchForm({
   return (
     <div className="section">
       <div className="search-form">
-        <form className="search-form__group-left">
+        <div className="search-form__group-left">
           <img className="search-form__lupa" src={lupa} alt="кнопка" />
           <input
             type="text"
@@ -35,7 +35,7 @@ export default function SearchForm({
             className=" search-form__button1"
             onClick={saveSearchInput}
           ></button>
-        </form>
+        </div>
         <div className="search-form__group-right">
           <button
             className="search-form__button2"
