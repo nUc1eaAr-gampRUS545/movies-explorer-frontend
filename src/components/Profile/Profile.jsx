@@ -2,20 +2,19 @@ import Header from "../Header/Header";
 import "./Profile.css";
 import { useNavigate } from "react-router-dom";
 import api from "../../utils/MainApi";
-
+import useInput from "../Validation/Validation";
 import { useState } from "react";
 export default function Profile({ isUserData, ...props }) {
-  const [formValue, setFormValue] = useState({
-    name: `${isUserData.name}`,
-    about: `${isUserData.email}`,
-  });
-  const [save, setSave] = useState(false);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValue({ ...formValue, [name]: value });
+  const navigate = useNavigate();
+  let email = useInput(`${isUserData.email}`, { isEmpty: true, minLength: 6, isEmail: false });
+  let name = useInput(`${isUserData.name}`, { isEmpty: true, minLength: 4, name: false });
+  const formObject = {
+    name: name.formValue,
+    about: email.formValue,
   };
+  const [save, setSave] = useState(false);
   const handleSubmit = () => {
-    api.updateUserInfo(formValue).then((data) => {
+    api.updateUserInfo(formObject).then((data) => {
       props.setUserData(data);
       setSave(true);
       setTimeout(() => setSave(false), 3000);
@@ -23,11 +22,12 @@ export default function Profile({ isUserData, ...props }) {
     setRedaction(false);
   };
   const [redaction, setRedaction] = useState(false);
-  const navigate = useNavigate();
+
   const clearCookey = () => {
+    localStorage.clear();
     api.signOut().then(() => {
+      props.setLoggedIn(false);
       navigate("/");
-      props.setLoggedIn();
     });
   };
 
@@ -43,9 +43,9 @@ export default function Profile({ isUserData, ...props }) {
               <input
                 className="profile__info-cell-input"
                 name="name"
-                onChange={handleChange}
+                onChange={(e) => name.onChange(e.target.value)}
                 type="text"
-                value={redaction ? formValue.name : `${isUserData.name}`}
+                value={redaction ? name.value : `${isUserData.name}`}
               ></input>
             ) : (
               <span className="profile__info-cell-input">
@@ -59,9 +59,9 @@ export default function Profile({ isUserData, ...props }) {
               <input
                 className="profile__info-cell-input"
                 type="text"
-                onChange={handleChange}
+                onChange={(e) => email.onChange(e.target.value)}
                 name="about"
-                value={redaction ? formValue.about : `${isUserData.email}`}
+                value={redaction ? email.value : `${isUserData.email}`}
               ></input>
             ) : (
               <span className="profile__info-cell-input">
@@ -76,13 +76,18 @@ export default function Profile({ isUserData, ...props }) {
               </div>
             }
             {redaction ? (
-              formValue.name === isUserData.name ||
-              formValue.email === isUserData.email ? (
+              name.value === isUserData.name 
+               ? (
                 <div className="profile__button1">Данные не измененны!</div>
               ) : (
                 <button
-                  className="profile__button1"
+                  className={
+                    email.inputValid && name.inputValid
+                      ? "profile__button1 "
+                      : "profile__button1 profile__button1-no-valid "
+                  }
                   type="button"
+                  disabled={email.inputValid || name.inputValid ? false : true}
                   onClick={handleSubmit}
                 >
                   Сохранить

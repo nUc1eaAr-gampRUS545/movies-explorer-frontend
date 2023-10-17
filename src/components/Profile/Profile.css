@@ -66,6 +66,9 @@ input:focus {
 .message-no-active{
   opacity: 0;
 }
+.profile__button1-no-valid{
+  opacity: 0.5;
+}
 .profile__button2 {
   color: #ff0000;
   text-align: center;

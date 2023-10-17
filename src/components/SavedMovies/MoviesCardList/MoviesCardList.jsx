@@ -10,7 +10,7 @@ export default function MoviesCardList({ ...props }) {
       {props.savedFilms.map((card) => {
         const name = card.nameRU;
         const duration = card.duration;
-        if (props.checkBox && name.includes(props.search) !== "") {
+        if (props.checkBox && name.includes(props.search.toLowerCase()) !== "") {
           return (
             duration <= 40 &&
             name.includes(props.search) && (
@@ -22,7 +22,7 @@ export default function MoviesCardList({ ...props }) {
             )
           );
         }
-        else if (name.includes(props.search) !== "" && !props.checkBox) {
+        else if (name.includes(props.search.toLowerCase()) !== "" && !props.checkBox) {
           return (
             name.includes(props.search) && (
               <MoviesCard
@@ -33,7 +33,7 @@ export default function MoviesCardList({ ...props }) {
             )
           );
         }
-        else if(name.includes(props.search) === "" && !props.checkBox) {
+        else if(name.includes(props.search.toLowerCase()) === "" && !props.checkBox) {
           return (
             <MoviesCard
               card={card}

@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import UserAuthorization from "../../utils/userAuth";
 import Preloader from "../Movies/Preloader/Preloader";
 import Input from "../Input/Input";
-export default function Login({ handleLogged }) {
+export default function Login({ handleLogged, isLoggedIn }) {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   let email = useInput("", { isEmpty: true, minLength: 6, isEmail: false });
@@ -26,7 +26,9 @@ export default function Login({ handleLogged }) {
       .then((data) => {
         handleLogged();
         setMessage(data);
-        navigate('/')
+        navigate('/');
+        localStorage.setItem("Movies",[]);
+    localStorage.setItem("shortMovies",[])
       })
       .catch((err) => {
         setMessage(err);
@@ -35,6 +37,7 @@ export default function Login({ handleLogged }) {
       .finally(() => <Preloader />);
   };
   return (
+    !isLoggedIn ?
     <div className="login">
        <NavLink to="/" ><div className="login__logo"></div></NavLink>
       <div className="login__title">Рады видеть!</div>
@@ -74,11 +77,11 @@ export default function Login({ handleLogged }) {
         </div>
         <button
           className={
-            email.inputValid || password.inputValid
-              ? "login__saved login__saved-no-active"
-              : "login__saved"
+            email.inputValid && password.inputValid
+              ? "login__saved "
+              : "login__saved login__saved-no-active"
           }
-          disabled={email.inputValid || password.inputValid ? true : false}
+          disabled={email.inputValid || password.inputValid ? false : true}
           type="submit"
         >
           Войти
@@ -90,6 +93,6 @@ export default function Login({ handleLogged }) {
           Регистрация
         </NavLink>
       </div>
-    </div>
+    </div> : navigate('/')
   );
 }

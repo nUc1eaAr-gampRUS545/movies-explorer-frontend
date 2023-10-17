@@ -19,7 +19,7 @@ export default function MoviesCardList({ ...props }) {
     );
   };
   saveId();
-  function handleDeleteCard(data) {
+  const handleDeleteCard=(data)=> {
     saveId();
     const card = props.savedMovies.filter(
       (movie) => movie.nameRU === data.nameRU
@@ -64,11 +64,11 @@ export default function MoviesCardList({ ...props }) {
     setshortFilm(
       props.films.filter(
         (card) =>
-          card.nameRU.includes(props.search) && card.duration < 41 && card
+          card.nameRU.includes(props.search.toLowerCase()) && card.duration < 41 && card
       )
     );
     setMovies(
-      props.films.filter((card) => card.nameRU.includes(props.search) && card)
+      props.films.filter((card) => card.nameRU.includes(props.search.toLowerCase()) && card)
     );
   }, []);
   useEffect(() => {
@@ -76,12 +76,13 @@ export default function MoviesCardList({ ...props }) {
       setshortFilm(
         props.films.filter(
           (card) =>
-            card.nameRU.includes(props.search) && card.duration < 41 && card
+            card.nameRU.includes(props.search.toLowerCase()) && card.duration < 41 && card
         )
       );
       setMovies(
-        props.films.filter((card) => card.nameRU.includes(props.search) && card)
+        props.films.filter((card) => card.nameRU.includes(props.search.toLowerCase()) && card)
       );
+      localStorage.setItem("Movies", JSON.stringify(movies));
     } else {
       setshortFilm([]);
       setMovies([]);
@@ -98,10 +99,11 @@ export default function MoviesCardList({ ...props }) {
     }
   };
   const viewErrorMessage = (arg1, arg2, arg3, arg4) => {
+    
     if (arg1 && arg2 && arg3 && arg4) {
       return (
         <div className="movies-eror">
-          К сожалению по вашему запросу ничего не найдено
+          Ничего не найдено
         </div>
       );
     }
@@ -114,9 +116,11 @@ export default function MoviesCardList({ ...props }) {
       <section className="card-list">
         {props.checkBox
           ? shortFilm.map((card) => {
-              localStorage.setItem("shortMovies", JSON.stringify(shortFilm));
-              return card.nameRU.includes(props.search) &&
-                card.duration < 41 ? (
+              const name=card.nameRU.toLowerCase();
+              const duration=card.duration;
+             // localStorage.setItem("shortMovies", JSON.stringify(shortFilm));
+              return name.includes(props.search.toLowerCase()) &&
+              duration < 41 ? (
                 <MoviesCard
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
@@ -133,8 +137,9 @@ export default function MoviesCardList({ ...props }) {
               );
             })
           : movies.slice(0, numberCards).map((card) => {
-              localStorage.setItem("Movies", JSON.stringify(movies));
-              return card.nameRU.includes(props.search) && (
+              const name=card.nameRU.toLowerCase();
+              //localStorage.setItem("Movies", JSON.stringify(movies));
+              return name.includes(props.search.toLowerCase()) && (
                 <MoviesCard
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
@@ -186,9 +191,10 @@ export default function MoviesCardList({ ...props }) {
         {viewAddButton(numberCards,shortFilm.length,props.checkBox,!checking)}
         {viewAddButton(numberCards,storageMovie.length,!props.checkBox,checking)}
         {viewAddButton(numberCards,storageMovie.length,props.checkBox,checking)}
+        
         {viewErrorMessage(movies.length === 0,shortFilm.length === 0,!props.checkBox,!checking)}
         {viewErrorMessage(true,shortFilm.length === 0,props.checkBox,!checking)}
-        {viewErrorMessage(storageMovie.length !== 0,storageShortMovie.length === 0,!props.checkBox,checking)}
+        {viewErrorMessage(storageMovie.length === 0,storageShortMovie.length === 0,!props.checkBox,checking)}
         {viewErrorMessage(true,storageMovie.length !== 0,storageShortMovie.length === 0,props.checkBox,checking)}
       </div>
     </>

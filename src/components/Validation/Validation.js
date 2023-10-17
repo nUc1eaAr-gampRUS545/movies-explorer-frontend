@@ -27,7 +27,7 @@ const useValidation=(value,validations)=>{
          }
     },[value]);
 
-    useEffect(()=>isEmailError || minLengthError ? setInputValid(true) : setInputValid(false))
+    useEffect(()=>isEmailError || minLengthError || nameError  ? setInputValid(false) : setInputValid(true))
 
     return {
         isEmpty,minLengthError,isEmailError,inputValid,nameError

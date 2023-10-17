@@ -8,7 +8,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import { React, useEffect, useState } from "react";
 import api from "../../utils/MainApi";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import "../../vendor/fonts/font.css";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
 
@@ -16,11 +16,8 @@ function App() {
   const [isLoggetIn, setLoggedIn] = useState(false);
   const [isUserData, setUserData] = useState({});
   const [menu, setMenu] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem("Movies",[]);
-    localStorage.setItem("shortMovies",[])
     api
       .getContent()
       .then((data) => {
@@ -34,7 +31,6 @@ function App() {
       .catch(() => {
         setLoggedIn(false);
         setUserData("");
-        navigate("/");
       });
   }, [isLoggetIn]);
 
@@ -64,7 +60,7 @@ function App() {
                   closeMenu={() => setMenu(false)}
                   openMenu={() => setMenu(true)}
                   flag={menu}
-                  setLoggedIn={()=>setLoggedIn(false)}
+                  setLoggedIn={(data)=>setLoggedIn(data)}
                   setUserData={(data)=>setUserData(data)}
                 />
               }
@@ -105,10 +101,10 @@ function App() {
         />
         <Route
           path="/login"
-          element={<Login handleLogged={() => setLoggedIn(true)} />}
+          element={<Login handleLogged={() => setLoggedIn(true)}   isLoggedIn={isLoggetIn}/>}
         />
-        <Route path="/register" element={<Register handleLogged={() => setLoggedIn(true)}/>} />
-        <Route path="/error" element={<Error />} />
+        <Route path="/register" element={<Register handleLogged={() => setLoggedIn(true)} isLoggedIn={isLoggetIn}/>} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </CurrentUserContext.Provider>
   );
