@@ -36,7 +36,7 @@ export default function Movies({...props}) {
         setSavedFilm(data);
       })
       .catch((err) => {
-        navigate("/error")
+navigate('/movies')
       });
   }, [props.isLoggedIn]);
 
@@ -48,7 +48,7 @@ export default function Movies({...props}) {
         setSavedFilm(data);
       })
       .catch((err) => {
-        navigate("/error")
+        navigate("/movies")
       });
   }, [flagUpdating]);
 

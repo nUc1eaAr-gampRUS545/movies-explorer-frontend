@@ -7,29 +7,28 @@ import { useState } from "react";
 export default function Profile({ isUserData, ...props }) {
   const [formValue, setFormValue] = useState({
     name: `${isUserData.name}`,
-    about:`${isUserData.email}`,
-    
+    about: `${isUserData.email}`,
   });
-  const [save,setSave]=useState(false)
+  const [save, setSave] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
   };
   const handleSubmit = () => {
-    api.updateUserInfo(formValue).then((data)=>{
-      props.setUserData(data)
+    api.updateUserInfo(formValue).then((data) => {
+      props.setUserData(data);
       setSave(true);
-      setTimeout(()=>setSave(false),3000)
-    })
-    setRedaction(false)
+      setTimeout(() => setSave(false), 3000);
+    });
+    setRedaction(false);
   };
   const [redaction, setRedaction] = useState(false);
   const navigate = useNavigate();
   const clearCookey = () => {
-    api.signOut().then(()=>{
+    api.signOut().then(() => {
       navigate("/");
-    props.setLoggedIn()
-    })
+      props.setLoggedIn();
+    });
   };
 
   return (
@@ -71,15 +70,28 @@ export default function Profile({ isUserData, ...props }) {
             )}
           </div>
           <div className="profile__buttons">
-            { <div className={ save ? "message" :  'message message-no-active'}>Профиль успешно обновлён!</div>}
+            {
+              <div className={save ? "message" : "message message-no-active"}>
+                Профиль успешно обновлён!
+              </div>
+            }
             {redaction ? (
-              <button className="profile__button1" type="button" onClick={handleSubmit}>
-                Сохранить
-              </button>
+              formValue.name === isUserData.name ||
+              formValue.email === isUserData.email ? (
+                <div className="profile__button1">Данные не измененны!</div>
+              ) : (
+                <button
+                  className="profile__button1"
+                  type="button"
+                  onClick={handleSubmit}
+                >
+                  Сохранить
+                </button>
+              )
             ) : (
               <button
                 className="profile__button1"
-                onClick={() =>  setRedaction(true)}
+                onClick={() => setRedaction(true)}
                 type="button"
               >
                 Редактировать

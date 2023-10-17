@@ -29,7 +29,7 @@ function App() {
         }
         setLoggedIn(true);
         setUserData(data);
-        navigate("/movies");
+
       })
       .catch(() => {
         setLoggedIn(false);

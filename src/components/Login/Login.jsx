@@ -24,9 +24,9 @@ export default function Login({ handleLogged }) {
     evt.preventDefault();
     UserAuthorization.authorization(formObject)
       .then((data) => {
-        navigate("/");
         handleLogged();
         setMessage(data);
+        navigate('/')
       })
       .catch((err) => {
         setMessage(err);
@@ -36,7 +36,7 @@ export default function Login({ handleLogged }) {
   };
   return (
     <div className="login">
-      <div className="login__logo"></div>
+       <NavLink to="/" ><div className="login__logo"></div></NavLink>
       <div className="login__title">Рады видеть!</div>
       <form className="login__container" onSubmit={handleSubmit}>
         <p className="login__caption">E-mail</p>

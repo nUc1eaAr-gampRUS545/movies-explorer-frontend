@@ -41,17 +41,17 @@ export default function Register({handleLogged}) {
       .then((data) => {
         setMessage(data);
         authorization();
-
+        navigate('/movies')
+     
       })
       .catch((err) => {
         setMessage(err);
         console.log(err);
       })
-      .finally(() => {});
   };
   return (
     <div className="register">
-      <div className="register__logo"></div>
+      <NavLink to="/" ><div className="register__logo"></div></NavLink>
       <div className="register__title">Добро пожаловать!</div>
       <form className="register__container" onSubmit={handleSubmit}>
         <p className="register__caption">Имя</p>
