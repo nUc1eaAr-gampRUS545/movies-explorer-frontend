@@ -38,8 +38,7 @@ export default function Register({ handleLogged, isLoggetIn }) {
         setMessage(data);
         authorization();
         navigate("/movies");
-        localStorage.setItem("Movies",[]);
-    localStorage.setItem("shortMovies",[])
+       
       })
       .catch((err) => {
         setMessage(err);

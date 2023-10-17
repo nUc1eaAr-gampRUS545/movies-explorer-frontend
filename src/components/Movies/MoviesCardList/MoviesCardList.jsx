@@ -64,8 +64,7 @@ export default function MoviesCardList({ ...props }) {
     setshortFilm(
       props.films.filter(
         (card) =>
-          card.nameRU.includes(props.search.toLowerCase()) && card.duration < 41 && card
-      )
+          card.nameRU.includes(props.search.toLowerCase()) && card.duration < 41 && card)
     );
     setMovies(
       props.films.filter((card) => card.nameRU.includes(props.search.toLowerCase()) && card)
@@ -98,7 +97,6 @@ export default function MoviesCardList({ ...props }) {
     }
   };
   const viewErrorMessage = (arg1, arg2, arg3, arg4) => {
-    
     if (arg1 && arg2 && arg3 && arg4) {
       return (
         <div className="movies-eror">
@@ -190,7 +188,6 @@ export default function MoviesCardList({ ...props }) {
         {viewAddButton(numberCards,shortFilm.length,props.checkBox,!checking)}
         {viewAddButton(numberCards,storageMovie.length,!props.checkBox,checking)}
         {viewAddButton(numberCards,storageMovie.length,props.checkBox,checking)}
-      
         {viewErrorMessage(movies.length === 0,shortFilm.length === 0,!props.checkBox,!checking)}
         {viewErrorMessage(true,shortFilm.length === 0,props.checkBox,!checking)}
         {viewErrorMessage(storageMovie.length === 0,storageShortMovie.length === 0,!props.checkBox,checking)}

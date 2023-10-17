@@ -16,8 +16,9 @@ function App() {
   const [isLoggetIn, setLoggedIn] = useState(false);
   const [isUserData, setUserData] = useState({});
   const [menu, setMenu] = useState(false);
-
+  
   useEffect(() => {
+   
     api
       .getContent()
       .then((data) => {
