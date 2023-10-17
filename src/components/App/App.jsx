@@ -19,6 +19,8 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    localStorage.setItem("Movies",[]);
+    localStorage.setItem("shortMovies",[])
     api
       .getContent()
       .then((data) => {

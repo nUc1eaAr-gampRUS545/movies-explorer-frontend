@@ -35,6 +35,7 @@ export default function Register({handleLogged}) {
    
   }
   const handleSubmit = (evt) => {
+    
     evt.preventDefault();
     UserAuthorization.registr(formObject)
       .then((data) => {
