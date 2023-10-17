@@ -82,7 +82,6 @@ export default function MoviesCardList({ ...props }) {
       setMovies(
         props.films.filter((card) => card.nameRU.includes(props.search.toLowerCase()) && card)
       );
-      localStorage.setItem("Movies", JSON.stringify(movies));
     } else {
       setshortFilm([]);
       setMovies([]);
@@ -118,7 +117,7 @@ export default function MoviesCardList({ ...props }) {
           ? shortFilm.map((card) => {
               const name=card.nameRU.toLowerCase();
               const duration=card.duration;
-             // localStorage.setItem("shortMovies", JSON.stringify(shortFilm));
+              localStorage.setItem("shortMovies", JSON.stringify(shortFilm));
               return name.includes(props.search.toLowerCase()) &&
               duration < 41 ? (
                 <MoviesCard
@@ -138,7 +137,7 @@ export default function MoviesCardList({ ...props }) {
             })
           : movies.slice(0, numberCards).map((card) => {
               const name=card.nameRU.toLowerCase();
-              //localStorage.setItem("Movies", JSON.stringify(movies));
+              localStorage.setItem("Movies", JSON.stringify(movies));
               return name.includes(props.search.toLowerCase()) && (
                 <MoviesCard
                   card={card}
@@ -191,7 +190,7 @@ export default function MoviesCardList({ ...props }) {
         {viewAddButton(numberCards,shortFilm.length,props.checkBox,!checking)}
         {viewAddButton(numberCards,storageMovie.length,!props.checkBox,checking)}
         {viewAddButton(numberCards,storageMovie.length,props.checkBox,checking)}
-        
+      
         {viewErrorMessage(movies.length === 0,shortFilm.length === 0,!props.checkBox,!checking)}
         {viewErrorMessage(true,shortFilm.length === 0,props.checkBox,!checking)}
         {viewErrorMessage(storageMovie.length === 0,storageShortMovie.length === 0,!props.checkBox,checking)}
