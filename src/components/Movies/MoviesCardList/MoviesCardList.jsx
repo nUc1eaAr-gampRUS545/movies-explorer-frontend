@@ -12,18 +12,14 @@ export default function MoviesCardList({ ...props }) {
   const [storageMovie, setStorageMovie] = useState([]);
   const [storageShortMovie, setStorageShortMovie] = useState([]);
   const [checking, setChecking] = useState(false);
-  const [lastReq, setLastReq] = useState("");
   const savedFilmsId = [];
 
   const saveId = () => {
-    props.savedMovies.map((movie) =>{
-      if(movie.owner===props.isUserData._id){
-       return  savedFilmsId.push(movie.nameRU)
+    props.savedMovies.map((movie) => {
+      if (movie.owner === props.isUserData._id) {
+        return savedFilmsId.push(movie.nameRU);
       }
-      
-    }
-     
-    );
+    });
   };
   saveId();
   const handleDeleteCard = (data) => {
@@ -38,30 +34,27 @@ export default function MoviesCardList({ ...props }) {
     if (localStorage.getItem("checking") == "false") {
       return setChecking(false);
     } else {
-      
       setStorageMovie([...JSON.parse(localStorage.getItem("Movies"))]);
-      setStorageShortMovie([...JSON.parse(localStorage.getItem("shortMovies"))]);
+      setStorageShortMovie([
+        ...JSON.parse(localStorage.getItem("shortMovies")),
+      ]);
       return setChecking(true);
     }
   };
   setTimeout(getScreenWidth, 2000);
   useEffect(() => {
-    setLastReq(localStorage.getItem("lastReq"));
     getScreenWidth();
     checkLocalStorage();
   }, []);
 
   useEffect(() => {
-    if(localStorage.getItem("Movies")==null){
-      return
-    }
-    else{
+    if (localStorage.getItem("Movies") == null) {
+      return;
+    } else {
       setStorageMovie(JSON.parse(localStorage.getItem("Movies")));
       setStorageShortMovie(JSON.parse(localStorage.getItem("shortMovies")));
     }
-   
   }, [checking]);
-
 
   const clickButtonAddCards = () => {
     if (windowWidth > 1200) {
@@ -105,6 +98,7 @@ export default function MoviesCardList({ ...props }) {
       );
     }
   };
+
   const viewErrorMessage = (arg1, arg2, arg3, arg4) => {
     if (arg1 === null) {
       return;
@@ -113,7 +107,6 @@ export default function MoviesCardList({ ...props }) {
       return <div className="movies-eror">Ничего не найдено</div>;
     }
   };
-
   return props.isLoading ? (
     <Preloader />
   ) : (
@@ -121,7 +114,6 @@ export default function MoviesCardList({ ...props }) {
       <section className="card-list">
         {props.checkBox
           ? shortFilm.map((card) => {
-              const name = card.nameRU.toLowerCase();
               const duration = card.duration;
 
               return duration < 41 ? (
@@ -141,8 +133,6 @@ export default function MoviesCardList({ ...props }) {
               );
             })
           : movies.slice(0, numberCards).map((card) => {
-              const name = card.nameRU.toLowerCase();
-
               return (
                 <MoviesCard
                   card={card}
@@ -150,12 +140,10 @@ export default function MoviesCardList({ ...props }) {
                   handleDeleteCard={(card) => handleDeleteCard(card)}
                   key={createKeys()}
                   setFilm={(data) => props.setFilm(data)}
-                  handleEditLikeCardClick={(data) =>{
-                    props.handleEditLikeCardClick(data)
+                  handleEditLikeCardClick={(data) => {
+                    props.handleEditLikeCardClick(data);
                     return saveId();
-                  }
-                    
-                  }
+                  }}
                 />
               );
             })}
@@ -168,78 +156,75 @@ export default function MoviesCardList({ ...props }) {
                   handleDeleteCard={(card) => handleDeleteCard(card)}
                   key={createKeys()}
                   setFilm={(data) => props.setFilm(data)}
-                  handleEditLikeCardClick={(data) =>{
-                    props.handleEditLikeCardClick(data)
+                  handleEditLikeCardClick={(data) => {
+                    props.handleEditLikeCardClick(data);
                     return saveId();
-                  }
-                   
-                  }
+                  }}
                 />
               );
             })
           : props.checkStorage &&
-            storageShortMovie
-              .slice(0, numberCards)
-              .map(
-                (card) =>
-                  card.duration < 41 && (
-                    <MoviesCard
-                      card={card}
-                      liked={savedFilmsId.includes(card.nameRU)}
-                      handleDeleteCard={(card) => handleDeleteCard(card)}
-                      key={createKeys()}
-                      setFilm={(data) => props.setFilm(data)}
-                      handleEditLikeCardClick={(data) =>{
-                        props.handleEditLikeCardClick(data)
-                        return saveId();}
-                      }
-                    />
-                  )
-              )}
+            storageShortMovie.slice(0, numberCards).map(
+              (card) =>
+                card.duration < 41 && (
+                  <MoviesCard
+                    card={card}
+                    liked={savedFilmsId.includes(card.nameRU)}
+                    handleDeleteCard={(card) => handleDeleteCard(card)}
+                    key={createKeys()}
+                    setFilm={(data) => props.setFilm(data)}
+                    handleEditLikeCardClick={(data) => {
+                      props.handleEditLikeCardClick(data);
+                      return saveId();
+                    }}
+                  />
+                )
+            )}
       </section>
       <div className="cards-footer">
-        {viewAddButton(numberCards, movies.length, !props.checkBox, !checking)}
+        { viewAddButton(numberCards, movies.length, !props.checkBox, !props.checkStorage)}
         {viewAddButton(
           numberCards,
           shortFilm.length,
           props.checkBox,
-          !checking
+          !props.checkStorage
         )}
         {viewAddButton(
           numberCards,
           storageMovie.length,
           !props.checkBox,
-          checking
+          props.checkStorage
         )}
         {viewAddButton(
           numberCards,
-          storageMovie.length,
+          storageShortMovie.length,
           props.checkBox,
-          checking
+          props.checkStorage
         )}
+
         {viewErrorMessage(
           movies.length === 0,
           shortFilm.length === 0,
           !props.checkBox,
-          !checking
+          !props.checkStorage
         )}
         {viewErrorMessage(
           true,
           shortFilm.length === 0,
           props.checkBox,
-          !checking
+          !props.checkStorage
         )}
         {viewErrorMessage(
           storageMovie.length === 0,
           storageShortMovie.length === 0,
           !props.checkBox,
-          checking
+          props.checkStorage
         )}
         {viewErrorMessage(
-          storageMovie.length === 0,
+          true,
           storageShortMovie.length === 0,
           props.checkBox,
-          checking
+          props.checkStorage
         )}
       </div>
     </>

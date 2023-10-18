@@ -17,6 +17,7 @@ export default function SearchForm({
     localStorage.setItem('checking',false);
     localStorage.setItem("lastReq", input.value);
     searchInputMovies(input.value);
+    setCheckStorage(false)
   };
 
   const clickCheckbox = (data) => {
@@ -42,7 +43,7 @@ export default function SearchForm({
           ></input>
           <button
             className={
-              input.value === "" || input.value === " "
+              input.value === "" 
                 ? "search-form__button1 search-form__button-no-active"
                 : "search-form__button1"
             }
@@ -55,7 +56,7 @@ export default function SearchForm({
         <div className="search-form__group2">
           <button
             className={
-              input.value === "" || input.value === " "
+              input.value === "" 
                 ? "search-form__button2 search-form__button-no-active"
                 : "search-form__button2"
             }
@@ -93,7 +94,8 @@ export default function SearchForm({
             onClick={() => {
               localStorage.setItem('checking',true);
               setViewStorage(false);
-              setCheckStorage();
+              setCheckStorage(true);
+              searchInputMovies('')
               input.onChange(localStorage.getItem("lastReq"))
               
             }}

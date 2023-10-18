@@ -77,7 +77,7 @@ navigate('/movies')
           searchInputMovies={(data) => setSearchInput(data)}
           checkBox={checkBox}
           clickCheckBox={(data) => setCheckBox(data)}
-          setCheckStorage={()=>setCheckStorage(true)}
+          setCheckStorage={(data)=>setCheckStorage(data)}
         />
         <MoviesCardList
         isUserData={props.isUserData}
