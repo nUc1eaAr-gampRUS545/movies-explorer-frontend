@@ -1,0 +1,12 @@
+.cards-add {
+    width: 320px;
+    height: 36px;
+    flex-shrink: 0;
+    margin: 0 auto;
+    border-radius: 6px;
+    border: 0;
+    background: #f4f4f4;
+  }
+  .card-add-button-none{
+    display: none;
+  }

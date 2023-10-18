@@ -38,6 +38,8 @@ export default function Register({ handleLogged, isLoggetIn }) {
         setMessage(data);
         authorization();
         navigate("/movies");
+        localStorage.setItem("shortMovies", JSON.stringify([]));
+        localStorage.setItem("Movies", JSON.stringify([]));
        
       })
       .catch((err) => {

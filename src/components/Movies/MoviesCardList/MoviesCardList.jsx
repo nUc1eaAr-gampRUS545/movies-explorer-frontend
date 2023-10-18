@@ -13,9 +13,9 @@ export default function MoviesCardList({ ...props }) {
   const [storageShortMovie, setStorageShortMovie] = useState([]);
   const [checking, setChecking] = useState(false);
   const savedFilmsId = [];
-
-
+  
   const saveId = () => {
+    
     props.savedMovies.map((movie) =>
       savedFilmsId.push(movie.nameRU, movie._id)
     );
@@ -38,13 +38,8 @@ export default function MoviesCardList({ ...props }) {
   };
   setTimeout(getScreenWidth, 2000);
   useEffect(() => {
-    if (localStorage.getItem("Movies").length === 0) {
-      setStorageMovie([]);
-      setStorageShortMovie([]);
-    } else {
       setStorageMovie(JSON.parse(localStorage.getItem("Movies")));
       setStorageShortMovie(JSON.parse(localStorage.getItem("shortMovies")));
-    }
     getScreenWidth();
     checkLocalStorage();
   }, []);
@@ -175,12 +170,12 @@ export default function MoviesCardList({ ...props }) {
               )}
       </section>
       <div className="cards-footer">
-        {viewAddButton(numberCards, movies.length, !props.checkBox, !checking)}
+      {viewAddButton(numberCards, movies.length, !props.checkBox, !checking)}
         {viewAddButton(numberCards,shortFilm.length,props.checkBox,!checking)}
         {viewAddButton(numberCards,storageMovie.length,!props.checkBox,checking)}
         {viewAddButton(numberCards,storageMovie.length,props.checkBox,checking)}
         {viewErrorMessage(movies.length === 0,shortFilm.length === 0,!props.checkBox,!checking)}
-        {viewErrorMessage(shortFilm.length === 0,props.checkBox,!checking)}
+        {viewErrorMessage(true,shortFilm.length === 0,props.checkBox,!checking)}
         {viewErrorMessage(storageMovie.length === 0,storageShortMovie.length === 0,!props.checkBox,checking)}
         {viewErrorMessage(storageMovie.length === 0,storageShortMovie.length === 0,props.checkBox,checking)}
       </div>

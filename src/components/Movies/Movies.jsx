@@ -10,7 +10,6 @@ export default function Movies({...props}) {
   const [films, setFilm] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchInputMovies, setSearchInput] = useState("");
-  const [flagUpdating,setFlagUpdating]=useState(false);
   const [savedFilms, setSavedFilm] = useState([]);
   const [checkBox, setCheckBox] = useState(false);
   const [checkStorage,setCheckStorage]=useState(false);
@@ -39,18 +38,6 @@ export default function Movies({...props}) {
 navigate('/movies')
       });
   }, [props.isLoggedIn]);
-
-
-  useEffect(() => {
-    api
-      .getSavedMovies()
-      .then((data) => {
-        setSavedFilm(data);
-      })
-      .catch((err) => {
-        navigate("/movies")
-      });
-  }, [flagUpdating]);
 
 
   useEffect(() => {
@@ -104,7 +91,6 @@ navigate('/movies')
           handleEditLikeCardClick={handleEditLikeCardClick}
           checkStorage={checkStorage}
           setSearchInput={setSearchInput}
-          setFlagUpdating={(data)=>setFlagUpdating(data)}
         />
       </main>
       <Footer />
