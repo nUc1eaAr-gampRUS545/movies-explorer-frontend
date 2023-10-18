@@ -1,6 +1,5 @@
 import "./MoviesCard.css";
 import {React,useState} from "react";
-import api from "../../../utils/MainApi";
 export default function MoviesCard({card,liked,handleDeleteCard,handleEditLikeCardClick}){
     const [like, setLike] = useState(liked);
     const serverUrl="https://api.nomoreparties.co"
@@ -17,6 +16,7 @@ export default function MoviesCard({card,liked,handleDeleteCard,handleEditLikeCa
     
       const likeCard=()=>{
         handleEditLikeCardClick(card)
+        console.log(card)
         setLike(true)
       }
      

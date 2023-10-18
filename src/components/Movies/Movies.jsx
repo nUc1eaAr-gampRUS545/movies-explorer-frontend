@@ -49,7 +49,6 @@ navigate('/movies')
     }
   }, []);
   const handleEditDeleteCardClick = (card) => {
-    
     api
       .deleteMovies(card._id)
       .then((res) => {
@@ -64,7 +63,6 @@ navigate('/movies')
     api.savedMovies(card)
       .then((newCard) => {
         setSavedFilm([...savedFilms,newCard])})
-      
       .catch((err) => {
         navigate("/error")
       });
