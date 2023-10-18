@@ -17,8 +17,8 @@ export default function MoviesCardList({ ...props }) {
 
   const saveId = () => {
     props.savedMovies.map((movie) =>{
-      if(movie.owner==props.isUserData._id){
-        savedFilmsId.push(movie.nameRU)
+      if(movie.owner===props.isUserData._id){
+       return  savedFilmsId.push(movie.nameRU)
       }
       
     }
@@ -127,7 +127,7 @@ export default function MoviesCardList({ ...props }) {
               return duration < 41 ? (
                 <MoviesCard
                   card={card}
-                  liked={savedFilmsId.includes(name)}
+                  liked={savedFilmsId.includes(card.nameRU)}
                   handleDeleteCard={(card) => handleDeleteCard(card)}
                   key={createKeys()}
                   setFilm={(data) => props.setFilm(data)}
@@ -170,7 +170,7 @@ export default function MoviesCardList({ ...props }) {
                   setFilm={(data) => props.setFilm(data)}
                   handleEditLikeCardClick={(data) =>{
                     props.handleEditLikeCardClick(data)
-                    saveId();
+                    return saveId();
                   }
                    
                   }
@@ -189,8 +189,9 @@ export default function MoviesCardList({ ...props }) {
                       handleDeleteCard={(card) => handleDeleteCard(card)}
                       key={createKeys()}
                       setFilm={(data) => props.setFilm(data)}
-                      handleEditLikeCardClick={(data) =>
+                      handleEditLikeCardClick={(data) =>{
                         props.handleEditLikeCardClick(data)
+                        return saveId();}
                       }
                     />
                   )
