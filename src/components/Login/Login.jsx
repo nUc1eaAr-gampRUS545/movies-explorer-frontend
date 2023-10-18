@@ -26,9 +26,10 @@ export default function Login({ handleLogged, isLoggedIn }) {
       .then((data) => {
         handleLogged();
         setMessage(data);
-        navigate('/');
-        localStorage.setItem("Movies",[]);
-    localStorage.setItem("shortMovies",[])
+        navigate("/movies");
+        localStorage.setItem("Movies", JSON.stringify([{}]));
+        localStorage.setItem("shortMovies", JSON.stringify(JSON.stringify([{}])))
+        localStorage.setItem("lastReq", "a");
       })
       .catch((err) => {
         setMessage(err);
@@ -36,10 +37,11 @@ export default function Login({ handleLogged, isLoggedIn }) {
       })
       .finally(() => <Preloader />);
   };
-  return (
-    !isLoggedIn ?
+  return !isLoggedIn ? (
     <div className="login">
-       <NavLink to="/" ><div className="login__logo"></div></NavLink>
+      <NavLink to="/">
+        <div className="login__logo"></div>
+      </NavLink>
       <div className="login__title">Рады видеть!</div>
       <form className="login__container" onSubmit={handleSubmit}>
         <p className="login__caption">E-mail</p>
@@ -93,6 +95,8 @@ export default function Login({ handleLogged, isLoggedIn }) {
           Регистрация
         </NavLink>
       </div>
-    </div> : navigate('/')
+    </div>
+  ) : (
+    navigate("/")
   );
 }

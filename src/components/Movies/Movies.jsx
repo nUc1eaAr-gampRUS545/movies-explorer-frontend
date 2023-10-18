@@ -82,6 +82,7 @@ navigate('/movies')
           setCheckStorage={()=>setCheckStorage(true)}
         />
         <MoviesCardList
+        isUserData={props.isUserData}
           films={films}
           savedMovies={savedFilms}
           isLoading={isLoading}

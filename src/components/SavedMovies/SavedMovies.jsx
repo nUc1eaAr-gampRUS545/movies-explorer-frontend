@@ -13,6 +13,7 @@ export default function SavedMovies({...props}) {
   const navigate=useNavigate();
   useEffect(() => {
     api.getSavedMovies().then((data) => {
+      
       setFilm(...films,data);
       setLoading(false)
     }
@@ -39,7 +40,7 @@ export default function SavedMovies({...props}) {
       />
       <main>
       <SearchForm  searchInputMovies={(data)=>setSearchInput(data)} checkBox={checkBox} clickCheckBox={(data)=>setCheckBox(data)}/>
-      <MoviesCardList savedFilms={films} isLoading={isLoading} deleteMovies={handleEditDeleteCardClick} search={searchInputMovies} checkBox={checkBox}/></main>
+      <MoviesCardList isUserData={props.isUserData} savedFilms={films} isLoading={isLoading} deleteMovies={handleEditDeleteCardClick} search={searchInputMovies} checkBox={checkBox}/></main>
       <Footer />
     </>
   );

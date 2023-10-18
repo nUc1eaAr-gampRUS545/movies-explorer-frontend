@@ -75,6 +75,7 @@ function App() {
               isLoggedIn={isLoggetIn}
               element={
                 <SavedMovies
+                  isUserData={isUserData}
                   isLoggedIn={isLoggetIn}
                   closeMenu={() => setMenu(false)}
                   openMenu={() => setMenu(true)}
@@ -91,6 +92,7 @@ function App() {
               isLoggedIn={isLoggetIn}
               element={
                 <Movies
+                isUserData={isUserData}
                   isLoggedIn={isLoggetIn}
                   closeMenu={() => setMenu(false)}
                   openMenu={() => setMenu(true)}
