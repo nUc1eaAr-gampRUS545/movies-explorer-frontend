@@ -3,7 +3,7 @@ import "./Profile.css";
 import { useNavigate } from "react-router-dom";
 import api from "../../utils/MainApi";
 import useInput from "../Validation/Validation";
-import { useState } from "react";
+import {useState } from "react";
 export default function Profile({ isUserData, ...props }) {
   const navigate = useNavigate();
   let email = useInput(`${isUserData.email}`, { isEmpty: true, minLength: 6, isEmail: false });
@@ -12,16 +12,19 @@ export default function Profile({ isUserData, ...props }) {
     name: name.formValue,
     about: isUserData.email,
   };
+
   const [save, setSave] = useState(false);
-  const handleSubmit = () => {
+  const [onFocusInput,setOnFocusInput]= useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
     api.updateUserInfo(formObject).then((data) => {
       props.setUserData(data);
       setSave(true);
       setTimeout(() => setSave(false), 3000);
     });
-    setRedaction(false);
+   
   };
-  const [redaction, setRedaction] = useState(false);
+
 
   const clearCookey = () => {
     localStorage.clear();
@@ -36,38 +39,35 @@ export default function Profile({ isUserData, ...props }) {
       <Header {...props} />
       <div className="profile">
         <h2 className="profile__title">Привет,{isUserData.name}!</h2>
-        <form className="profile__info" onSubmit={handleSubmit}>
+        <form className="profile__info" onSubmit={e=>handleSubmit(e)}>
           <div className="profile__info-cell ">
             <span className="profile__info-cell-span">Имя</span>
-            {redaction ? (
+            
               <input
                 className="profile__info-cell-input"
                 name="name"
+                onBlur={(e) =>{setOnFocusInput(false);return name.onBlur(e)}}
                 onChange={(e) => name.onChange(e.target.value)}
                 type="text"
-                value={redaction ? name.value : `${isUserData.name}`}
+                onFocus={()=>setOnFocusInput(true)}
+                value={name.value}
               ></input>
-            ) : (
-              <span className="profile__info-cell-input">
-                {isUserData.name}
-              </span>
-            )}
+            
           </div>
           <div className="profile__info-cell profile__info-cell-no-border">
             <span className="profile__info-cell-span">E-mail</span>
-            {redaction ? (
+           
               <input
                 className="profile__info-cell-input"
                 type="text"
+                onBlur={e=>{setOnFocusInput(false);return email.onBlur(e)}}
+                onFocus={()=>setOnFocusInput(true)}
                 onChange={(e) => email.onChange(e.target.value)}
                 name="about"
-                value={redaction ? email.value : `${isUserData.email}`}
+               
+                value={email.value}
               ></input>
-            ) : (
-              <span className="profile__info-cell-input">
-                {isUserData.email}
-              </span>
-            )}
+          
           </div>
           <div className="profile__buttons">
             {
@@ -75,7 +75,37 @@ export default function Profile({ isUserData, ...props }) {
                 Профиль успешно обновлён!
               </div>
             }
-            {redaction ? (
+              <div className={(name.value == isUserData.name && email.value == isUserData.email) && onFocusInput ? "profile__button1" : "profile__button1 profile__button1-no-active "}>Данные не измененны!</div>
+            
+            {  
+              <button
+              className={
+                email.inputValid && name.inputValid && (name.value !== isUserData.name )
+                  ? "profile__button1 "
+                  : "profile__button1 profile__button1-no-valid "
+              }
+                
+                type="submit"
+                disabled={email.inputValid && name.inputValid && (name.value !== isUserData.name )  ? false : true}
+                
+              >
+                Редактировать
+              </button>
+            }
+            <button
+              className="profile__button2"
+              type="button"
+              onClick={clearCookey}
+            >
+              Выйти из аккаунта
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+}
+/**redaction ? (
               name.value === isUserData.name 
                ? (
                 <div className="profile__button1">Данные не измененны!</div>
@@ -93,25 +123,4 @@ export default function Profile({ isUserData, ...props }) {
                   Сохранить
                 </button>
               )
-            ) : (
-              <button
-                className="profile__button1"
-                onClick={() => setRedaction(true)}
-                type="button"
-              >
-                Редактировать
-              </button>
-            )}
-            <button
-              className="profile__button2"
-              type="button"
-              onClick={clearCookey}
-            >
-              Выйти из аккаунта
-            </button>
-          </div>
-        </form>
-      </div>
-    </>
-  );
-}
+            ) */

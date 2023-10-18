@@ -1,6 +1,4 @@
-input:focus {
-  outline: 1px solid rgb(0, 81, 255);
-}
+
 .profile {
   display: flex;
   align-content: center;
@@ -68,6 +66,9 @@ input:focus {
 }
 .profile__button1-no-valid{
   opacity: 0.5;
+}
+.profile__button1-no-active{
+  opacity: 0;
 }
 .profile__button2 {
   color: #ff0000;
