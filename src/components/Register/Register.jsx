@@ -3,9 +3,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import UserAuthorization from "../../utils/userAuth";
 import useInput from "../Validation/Validation";
 import React, { useState } from "react";
+import { textError } from "../../utils/constatns";
 import Input from "../Input/Input";
 export default function Register({ handleLogged, isLoggetIn }) {
   const [message, setMessage] = useState("");
+  const [disable,setDisable]=useState(false)
   let email = useInput("", { isEmpty: true, minLength: 6, isEmail: false });
   let password = useInput("", { isEmpty: true, minLength: 4 });
   let name = useInput("", { isEmpty: true, minLength: 4, name: false });
@@ -19,25 +21,20 @@ export default function Register({ handleLogged, isLoggetIn }) {
     password: password.formValue,
   };
   const navigate = useNavigate();
-  const textError = (message) => {
-    if (message === "Ошибка 409") {
-      return "Пользователь с таким email уже существует.";
-    }
-    if (message === "Ошибка 400") {
-      return "При регистрации пользователя произошла ошибка.";
-    }
-  };
+ 
   const authorization = () => {
     handleLogged();
     UserAuthorization.authorization(formObjectAutorization);
   };
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    setDisable(true)
     UserAuthorization.registr(formObject)
       .then((data) => {
         setMessage(data);
         authorization();
         navigate("/movies");
+        setDisable(false);
         localStorage.setItem("Movies", JSON.stringify([{}]));
         localStorage.setItem("shortMovies", JSON.stringify(JSON.stringify([{}])))
         localStorage.setItem("lastReq", "a");
@@ -45,10 +42,10 @@ export default function Register({ handleLogged, isLoggetIn }) {
       })
       .catch((err) => {
         setMessage(err);
-        console.log(err);
-      });
+        setDisable(false);
+      })
   };
-  return !isLoggetIn ? (
+  return isLoggetIn ? navigate('/') : (
     <div className="register">
       <NavLink to="/">
         <div className="register__logo"></div>
@@ -112,7 +109,5 @@ export default function Register({ handleLogged, isLoggetIn }) {
         </NavLink>
       </div>
     </div>
-  ) : (
-    navigate("/")
-  );
+  )
 }

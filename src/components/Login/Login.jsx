@@ -3,41 +3,38 @@ import React, { useState } from "react";
 import useInput from "../Validation/Validation";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserAuthorization from "../../utils/userAuth";
-import Preloader from "../Movies/Preloader/Preloader";
+import { textError } from "../../utils/constatns";
 import Input from "../Input/Input";
 export default function Login({ handleLogged, isLoggedIn }) {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
+  const [disable,setDisable]=useState(false)
   let email = useInput("", { isEmpty: true, minLength: 6, isEmail: false });
   let password = useInput("", { isEmpty: true, minLength: 3 });
   let formObject = { email: email.formValue, password: password.formValue };
-  const textError = (message) => {
-    if (message === "Ошибка 401") {
-      return "Вы ввели неправильный логин или пароль.";
-    }
-    if (message === "Ошибка 400") {
-      return "При регистрации пользователя произошла ошибка.";
-    }
-  };
+
+ 
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    setDisable(true)
     UserAuthorization.authorization(formObject)
       .then((data) => {
         handleLogged();
         setMessage(data);
         navigate("/movies");
+        setDisable(false);
         localStorage.setItem("Movies", JSON.stringify([{}]));
         localStorage.setItem("shortMovies", JSON.stringify(JSON.stringify([{}])))
         localStorage.setItem("lastReq", "a");
       })
       .catch((err) => {
         setMessage(err);
-        console.error(err);
+        setDisable(false);
       })
-      .finally(() => <Preloader />);
+      
   };
-  return !isLoggedIn ? (
+  return isLoggedIn ? navigate('/') : (
     <div className="login">
       <NavLink to="/">
         <div className="login__logo"></div>
@@ -49,6 +46,7 @@ export default function Login({ handleLogged, isLoggedIn }) {
           type="email"
           name="email"
           message={message}
+          disabled={disable}
           onChange={(e) => email.onChange(e.target.value)}
           onBlur={(e) => email.onBlur(e)}
           value={email.value}
@@ -63,6 +61,7 @@ export default function Login({ handleLogged, isLoggedIn }) {
           name="password"
           message={message}
           value={password.value}
+          disabled={disable}
           onChange={(e) => password.onChange(e.target.value)}
         ></Input>
         {password.minLengthError && email.value !== "" && (
@@ -96,7 +95,5 @@ export default function Login({ handleLogged, isLoggedIn }) {
         </NavLink>
       </div>
     </div>
-  ) : (
-    navigate("/")
-  );
+  )
 }
