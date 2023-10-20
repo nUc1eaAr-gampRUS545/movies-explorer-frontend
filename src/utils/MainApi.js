@@ -1,4 +1,5 @@
-const baseURL = "https://movies-explorer-api.nomoredomainsicu.ru";
+//const baseURL = "https://movies-explorer-api.nomoredomainsicu.ru";
+const baseURL = "http://localhost:3001";
 class MainApi {
   _checkResponse(res) {
     if (res.ok) {
