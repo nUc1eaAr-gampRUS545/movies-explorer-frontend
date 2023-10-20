@@ -22,6 +22,14 @@ export default function SavedMovies({...props}) {
         setLoading(false)
       })
   },[props.isLoggedIn]);
+  useEffect(() => {
+    const buttonState = localStorage.getItem('SMcheckBox');
+    if (buttonState === 'true') {
+      setCheckBox(true);
+    } else {
+      setCheckBox(false);
+    }
+  }, []);
   
   const handleEditDeleteCardClick = (card) => {
       api
