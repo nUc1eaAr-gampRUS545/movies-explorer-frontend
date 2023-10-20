@@ -12,13 +12,11 @@ export default function MoviesCardList({ ...props }) {
   const [storageMovie, setStorageMovie] = useState([]);
   const [storageShortMovie, setStorageShortMovie] = useState([]);
   const [checking, setChecking] = useState(false);
-  
   const getScreenWidth = () =>setWindowWidth(window.innerWidth);
   setInterval(getScreenWidth, 2000);
   useEffect(()=>{
     detectWindowWidth(windowWidth,setNumberCards)
   },[windowWidth]);
-
   const saveId = () => {
     props.savedMovies.map((movie) => {
       if (movie.owner === props.isUserData._id) {
@@ -26,8 +24,6 @@ export default function MoviesCardList({ ...props }) {
       }
     });
   };
-
-  
   const handleDeleteCard = (data) => {
     saveId();
     const card = props.savedMovies.filter(
@@ -35,7 +31,6 @@ export default function MoviesCardList({ ...props }) {
     );
     props.handleEditDeleteCardClick(card[0]);
   };
-  
   const checkLocalStorage = () => {
     if (localStorage.getItem("checking") == "false") {
       return setChecking(false);
@@ -47,7 +42,6 @@ export default function MoviesCardList({ ...props }) {
       return setChecking(true);
     }
   };
- 
   useEffect(() => {
     saveId();
     checkLocalStorage();
@@ -64,19 +58,15 @@ export default function MoviesCardList({ ...props }) {
 
   const clickButtonAddCards = () => {
     if (windowWidth > 1200) {
-     
       setNumberCards(numberCards + 4);
     }
     if (windowWidth < 1200 && windowWidth > 761) {
-    
       setNumberCards(numberCards + 2);
     }
     if (windowWidth < 761 && windowWidth < 1200) {
-     
       setNumberCards(numberCards + 1);
     }
   };
-
   useEffect(() => {
     if (props.search !== "") {
       setshortFilm(writeShortFilms(props.films, props.search));
@@ -94,7 +84,6 @@ export default function MoviesCardList({ ...props }) {
       setMovies([]);
     }
   }, [props.search]);
-
   const viewAddButton = (arg1, arg2, arg3, arg4) => {
     if (arg1 < arg2 && arg3 && arg4) {
       return (
@@ -104,8 +93,6 @@ export default function MoviesCardList({ ...props }) {
       );
     }
   };
-
-  
   return props.isLoading ? (
     <Preloader />
   ) : (
@@ -114,7 +101,6 @@ export default function MoviesCardList({ ...props }) {
         {props.checkBox
           ? shortFilm.map((card) => {
               const duration = card.duration;
-
               return duration < 41 ? (
                 <MoviesCard
                   card={card}
