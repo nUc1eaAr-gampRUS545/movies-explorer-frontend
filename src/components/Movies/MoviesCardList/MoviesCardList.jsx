@@ -12,6 +12,7 @@ export default function MoviesCardList({ ...props }) {
   const [storageMovie, setStorageMovie] = useState([]);
   const [storageShortMovie, setStorageShortMovie] = useState([]);
   const [checking, setChecking] = useState(false);
+
   const getScreenWidth = () =>setWindowWidth(window.innerWidth);
   setInterval(getScreenWidth, 2000);
   useEffect(()=>{
@@ -24,6 +25,7 @@ export default function MoviesCardList({ ...props }) {
       }
     });
   };
+  saveId();
   const handleDeleteCard = (data) => {
     saveId();
     const card = props.savedMovies.filter(
