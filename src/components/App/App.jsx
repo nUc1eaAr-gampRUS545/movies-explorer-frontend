@@ -104,9 +104,16 @@ function App() {
         />
         <Route
           path="/login"
-          element={<Login handleLogged={() => setLoggedIn(true)}   isLoggedIn={isLoggetIn}/>}
+          element={<ProtectedRoute
+            isLoggedIn={!isLoggetIn}
+            element={<Login handleLogged={() => setLoggedIn(true)} isLoggedIn={isLoggetIn}/>}/>}
         />
-        <Route path="/register" element={<Register handleLogged={() => setLoggedIn(true)} isLoggedIn={isLoggetIn}/>} />
+         <Route
+          path="/register"
+          element={<ProtectedRoute
+            isLoggedIn={!isLoggetIn}
+            element={<Register handleLogged={() => setLoggedIn(true)} isLoggedIn={isLoggetIn}/>}/>}
+        />
         <Route path="*" element={<Error />} />
       </Routes>
     </CurrentUserContext.Provider>
