@@ -1,7 +1,6 @@
 import Preloader from "../../Movies/Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
-import createKeys from "../../CreateKeys/CreateKeys";
 export default function MoviesCardList({ ...props }) {
   return props.isLoading ? (
     <Preloader />
@@ -16,7 +15,7 @@ export default function MoviesCardList({ ...props }) {
             name.includes(props.search.toLowerCase()) && (
               <MoviesCard
                 card={card}
-                key={createKeys()}
+                key={card.id}
                 deleteCard={props.deleteMovies}
               />
             )
@@ -27,7 +26,7 @@ export default function MoviesCardList({ ...props }) {
             name.includes(props.search.toLowerCase()) && (
               <MoviesCard
                 card={card}
-                key={createKeys()}
+                key={card.id}
                 deleteCard={props.deleteMovies}
               />
             )
@@ -37,7 +36,7 @@ export default function MoviesCardList({ ...props }) {
           return (
             <MoviesCard
               card={card}
-              key={createKeys}
+              key={card.id}
               deleteCard={props.deleteMovies}
             />
           );

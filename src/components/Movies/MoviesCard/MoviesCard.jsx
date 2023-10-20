@@ -16,7 +16,6 @@ export default function MoviesCard({card,liked,handleDeleteCard,handleEditLikeCa
     
       const likeCard=()=>{
         handleEditLikeCardClick(card)
-        console.log(card)
         setLike(true)
       }
      
@@ -27,7 +26,7 @@ export default function MoviesCard({card,liked,handleDeleteCard,handleEditLikeCa
 
     return(
     <div className="card">
-       <a href={card.trailerLink}><img  className="card__photography" src={serverUrl+card.image.url} alt={card.nameRU}></img></a>
+       <a href={card.trailerLink} target="_blank"><img  className="card__photography" src={serverUrl+card.image.url} alt={card.nameRU}></img></a>
        <div className="card__container">
        <h2 className="card__title">{card.nameRU}</h2>
        <button className={like ? "card__button-active" : "card__button"} onClick={()=>like ? handleClickDelete() : likeCard()}></button>

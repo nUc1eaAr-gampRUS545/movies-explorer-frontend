@@ -1,8 +1,8 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { React, useState, useEffect } from "react";
 import Preloader from "../Preloader/Preloader";
-import { writeFilms, writeShortFilms } from "../../Filter/FilterCards";
-import createKeys from "../../CreateKeys/CreateKeys";
+import { viewErrorMessage,savedFilmsId,detectWindowWidth } from "../../../utils/constatns";
+import { writeFilms, writeShortFilms } from "../../../utils/FilterCards";
 import "./MoviesCardList.css";
 export default function MoviesCardList({ ...props }) {
   const [numberCards, setNumberCards] = useState(16);
@@ -12,7 +12,12 @@ export default function MoviesCardList({ ...props }) {
   const [storageMovie, setStorageMovie] = useState([]);
   const [storageShortMovie, setStorageShortMovie] = useState([]);
   const [checking, setChecking] = useState(false);
-  const savedFilmsId = [];
+  
+  const getScreenWidth = () =>setWindowWidth(window.innerWidth);
+  setInterval(getScreenWidth, 2000);
+  useEffect(()=>{
+    detectWindowWidth(windowWidth,setNumberCards)
+  },[windowWidth]);
 
   const saveId = () => {
     props.savedMovies.map((movie) => {
@@ -21,7 +26,8 @@ export default function MoviesCardList({ ...props }) {
       }
     });
   };
-  saveId();
+
+  
   const handleDeleteCard = (data) => {
     saveId();
     const card = props.savedMovies.filter(
@@ -29,7 +35,7 @@ export default function MoviesCardList({ ...props }) {
     );
     props.handleEditDeleteCardClick(card[0]);
   };
-  const getScreenWidth = () => setWindowWidth(window.innerWidth);
+  
   const checkLocalStorage = () => {
     if (localStorage.getItem("checking") == "false") {
       return setChecking(false);
@@ -41,9 +47,9 @@ export default function MoviesCardList({ ...props }) {
       return setChecking(true);
     }
   };
-  setTimeout(getScreenWidth, 2000);
+ 
   useEffect(() => {
-    getScreenWidth();
+    saveId();
     checkLocalStorage();
   }, []);
 
@@ -58,15 +64,15 @@ export default function MoviesCardList({ ...props }) {
 
   const clickButtonAddCards = () => {
     if (windowWidth > 1200) {
-      getScreenWidth();
+     
       setNumberCards(numberCards + 4);
     }
     if (windowWidth < 1200 && windowWidth > 761) {
-      getScreenWidth();
+    
       setNumberCards(numberCards + 2);
     }
     if (windowWidth < 761 && windowWidth < 1200) {
-      getScreenWidth();
+     
       setNumberCards(numberCards + 1);
     }
   };
@@ -99,14 +105,7 @@ export default function MoviesCardList({ ...props }) {
     }
   };
 
-  const viewErrorMessage = (arg1, arg2, arg3, arg4) => {
-    if (arg1 === null) {
-      return;
-    }
-    if (arg1 && arg2 && arg3 && arg4) {
-      return <div className="movies-eror">Ничего не найдено</div>;
-    }
-  };
+  
   return props.isLoading ? (
     <Preloader />
   ) : (
@@ -121,7 +120,7 @@ export default function MoviesCardList({ ...props }) {
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
                   handleDeleteCard={(card) => handleDeleteCard(card)}
-                  key={createKeys()}
+                  key={card.id}
                   setFilm={(data) => props.setFilm(data)}
                   handleEditLikeCardClick={(data) => {
                     props.handleEditLikeCardClick(data);
@@ -138,7 +137,7 @@ export default function MoviesCardList({ ...props }) {
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
                   handleDeleteCard={(card) => handleDeleteCard(card)}
-                  key={createKeys()}
+                  key={card.id}
                   setFilm={(data) => props.setFilm(data)}
                   handleEditLikeCardClick={(data) => {
                     props.handleEditLikeCardClick(data);
@@ -154,7 +153,7 @@ export default function MoviesCardList({ ...props }) {
                   card={card}
                   liked={savedFilmsId.includes(card.nameRU)}
                   handleDeleteCard={(card) => handleDeleteCard(card)}
-                  key={createKeys()}
+                  key={card.id}
                   setFilm={(data) => props.setFilm(data)}
                   handleEditLikeCardClick={(data) => {
                     props.handleEditLikeCardClick(data);
@@ -171,7 +170,7 @@ export default function MoviesCardList({ ...props }) {
                     card={card}
                     liked={savedFilmsId.includes(card.nameRU)}
                     handleDeleteCard={(card) => handleDeleteCard(card)}
-                    key={createKeys()}
+                    key={card.id}
                     setFilm={(data) => props.setFilm(data)}
                     handleEditLikeCardClick={(data) => {
                       props.handleEditLikeCardClick(data);

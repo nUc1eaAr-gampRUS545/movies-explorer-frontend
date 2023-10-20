@@ -21,6 +21,10 @@ export default function SearchForm({
   };
 
   const clickCheckbox = (data) => {
+    localStorage.setItem('checking',false);
+    localStorage.setItem("lastReq", input.value);
+    searchInputMovies(input.value);
+    setCheckStorage(false)
     localStorage.setItem("checkBox", data);
     return clickCheckBox(data);
   };

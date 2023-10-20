@@ -10,9 +10,8 @@ export default function Profile({ isUserData, ...props }) {
   let name = useInput(`${isUserData.name}`, { isEmpty: true, minLength: 4, name: false });
   const formObject = {
     name: name.formValue,
-    about: isUserData.email,
+    about: email.formValue,
   };
-
   const [save, setSave] = useState(false);
   const [onFocusInput,setOnFocusInput]= useState(false);
   const handleSubmit = (e) => {
