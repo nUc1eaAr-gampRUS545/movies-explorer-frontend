@@ -24,10 +24,11 @@ export default function MoviesCardList({ ...props }) {
   }, [windowWidth]);
   
   useEffect(() => {
+    const massiv=[]
     props.savedMovies.map((movie) => {
       if (movie.owner === props.isUserData._id) {
-        setSavedId([...savedFilmsId,movie.nameRU]);
-        return savedFilmsId;
+        massiv.push(movie.nameRU)
+        setSavedId([...massiv]);
       }
      
     });
