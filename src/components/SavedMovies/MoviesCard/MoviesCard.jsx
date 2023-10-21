@@ -1,5 +1,4 @@
 import "./MoviesCard.css";
-import api from "../../../utils/MainApi";
 export default function MoviesCard({ card, deleteCard }) {
   const serverUrl = "https://api.nomoreparties.co";
  
@@ -23,7 +22,7 @@ export default function MoviesCard({ card, deleteCard }) {
       </a>
       <div className="card__container">
         <h2 className="card__title">{card.nameRU}</h2>
-        <button className="card__button-delete" onClick={()=> deleteCard(card._id)}></button>
+        <button className="card__button-delete" onClick={()=> deleteCard(card)}></button>
       </div>
       <p className="card__movie-time">{calculationMovieTime(card.duration)}</p>
     </div>

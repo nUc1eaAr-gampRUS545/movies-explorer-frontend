@@ -3,7 +3,6 @@ import { React, useState, useEffect } from "react";
 import Preloader from "../Preloader/Preloader";
 import {
   viewErrorMessage,
-  savedFilmsId,
   detectWindowWidth,
 } from "../../../utils/constatns";
 import { writeFilms, writeShortFilms } from "../../../utils/FilterCards";

@@ -1,6 +1,6 @@
 import Header from "../Header/Header";
 import SearchForm from "./SearchForm/SearchForm.jsx";
-import api from "../../utils/MainApi";
+
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import React, { useEffect, useState } from "react";
