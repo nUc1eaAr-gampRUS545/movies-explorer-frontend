@@ -13,7 +13,7 @@ export default function MoviesCard({ card, deleteCard }) {
   };
   return (
     <div className="card">
-      <a href={card.trailerLink}>
+      <a href={card.trailerLink} target="_blank">
         <img
           className="card__photography"
           src={serverUrl + card.image}
