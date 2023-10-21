@@ -77,6 +77,15 @@ export default function MoviesCardList({ ...props }) {
     }
   };
   useEffect(() => {
+    if (windowWidth > 1200) {
+      setNumberCards(16);
+    }
+    if (windowWidth < 1200 && windowWidth > 480) {
+      setNumberCards(8);
+    }
+    if (windowWidth < 761 && windowWidth < 1200) {
+      setNumberCards(5);
+    }
     if (props.search !== "") {
       setshortFilm(writeShortFilms(props.films, props.search));
       setMovies(writeFilms(props.films, props.search));
