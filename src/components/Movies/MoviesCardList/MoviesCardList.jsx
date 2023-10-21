@@ -1,7 +1,11 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { React, useState, useEffect } from "react";
 import Preloader from "../Preloader/Preloader";
-import { viewErrorMessage,savedFilmsId,detectWindowWidth } from "../../../utils/constatns";
+import {
+  viewErrorMessage,
+  savedFilmsId,
+  detectWindowWidth,
+} from "../../../utils/constatns";
 import { writeFilms, writeShortFilms } from "../../../utils/FilterCards";
 import "./MoviesCardList.css";
 export default function MoviesCardList({ ...props }) {
@@ -9,28 +13,32 @@ export default function MoviesCardList({ ...props }) {
   const [windowWidth, setWindowWidth] = useState(null);
   const [shortFilm, setshortFilm] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [savedFilmsId,setSavedId] = useState([]);
   const [storageMovie, setStorageMovie] = useState([]);
   const [storageShortMovie, setStorageShortMovie] = useState([]);
   const [checking, setChecking] = useState(false);
 
-  const getScreenWidth = () =>setWindowWidth(window.innerWidth);
+  const getScreenWidth = () => setWindowWidth(window.innerWidth);
   setInterval(getScreenWidth, 2000);
-  useEffect(()=>{
-    detectWindowWidth(windowWidth,setNumberCards)
-  },[windowWidth]);
-  const saveId = () => {
+  useEffect(() => {
+    detectWindowWidth(windowWidth, setNumberCards);
+  }, [windowWidth]);
+  
+  useEffect(() => {
     props.savedMovies.map((movie) => {
       if (movie.owner === props.isUserData._id) {
-        return savedFilmsId.push(movie.nameRU);
+        setSavedId([...savedFilmsId,movie.nameRU]);
+        return savedFilmsId;
       }
+     
     });
-  };
-  saveId();
+  }, [props.savedMovies]);
+
   const handleDeleteCard = (data) => {
-    saveId();
     const card = props.savedMovies.filter(
       (movie) => movie.nameRU === data.nameRU
     );
+
     props.handleEditDeleteCardClick(card[0]);
   };
   const checkLocalStorage = () => {
@@ -45,7 +53,6 @@ export default function MoviesCardList({ ...props }) {
     }
   };
   useEffect(() => {
-    saveId();
     checkLocalStorage();
   }, []);
 
@@ -112,7 +119,6 @@ export default function MoviesCardList({ ...props }) {
                   setFilm={(data) => props.setFilm(data)}
                   handleEditLikeCardClick={(data) => {
                     props.handleEditLikeCardClick(data);
-                    return saveId();
                   }}
                 />
               ) : (
@@ -129,7 +135,6 @@ export default function MoviesCardList({ ...props }) {
                   setFilm={(data) => props.setFilm(data)}
                   handleEditLikeCardClick={(data) => {
                     props.handleEditLikeCardClick(data);
-                    return saveId();
                   }}
                 />
               );
@@ -145,7 +150,6 @@ export default function MoviesCardList({ ...props }) {
                   setFilm={(data) => props.setFilm(data)}
                   handleEditLikeCardClick={(data) => {
                     props.handleEditLikeCardClick(data);
-                    return saveId();
                   }}
                 />
               );
@@ -162,14 +166,18 @@ export default function MoviesCardList({ ...props }) {
                     setFilm={(data) => props.setFilm(data)}
                     handleEditLikeCardClick={(data) => {
                       props.handleEditLikeCardClick(data);
-                      return saveId();
                     }}
                   />
                 )
             )}
       </section>
       <div className="cards-footer">
-        { viewAddButton(numberCards, movies.length, !props.checkBox, !props.checkStorage)}
+        {viewAddButton(
+          numberCards,
+          movies.length,
+          !props.checkBox,
+          !props.checkStorage
+        )}
         {viewAddButton(
           numberCards,
           shortFilm.length,

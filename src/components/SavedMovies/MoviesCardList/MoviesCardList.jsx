@@ -16,7 +16,7 @@ export default function MoviesCardList({ ...props }) {
               <MoviesCard
                 card={card}
                 key={card.id}
-                deleteCard={props.deleteMovies}
+                deleteCard={(data)=>props.deleteMovies(data)}
               />
             )
           );
@@ -27,7 +27,7 @@ export default function MoviesCardList({ ...props }) {
               <MoviesCard
                 card={card}
                 key={card.id}
-                deleteCard={props.deleteMovies}
+                deleteCard={(data)=>props.deleteMovies(data)}
               />
             )
           );
@@ -37,7 +37,7 @@ export default function MoviesCardList({ ...props }) {
             <MoviesCard
               card={card}
               key={card.id}
-              deleteCard={props.deleteMovies}
+              deleteCard={(data)=>props.deleteMovies(data)}
             />
           );
         }

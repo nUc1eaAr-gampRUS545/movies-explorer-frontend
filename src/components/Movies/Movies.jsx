@@ -10,7 +10,6 @@ export default function Movies({...props}) {
   const [films, setFilm] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchInputMovies, setSearchInput] = useState("");
-  const [savedFilms, setSavedFilm] = useState([]);
   const [checkBox, setCheckBox] = useState(false);
   const [checkStorage,setCheckStorage]=useState(false);
   const navigate=useNavigate()
@@ -29,18 +28,6 @@ export default function Movies({...props}) {
   }, [isLoading]); 
 
   useEffect(() => {
-    api
-      .getSavedMovies()
-      .then((data) => {
-        setSavedFilm(data);
-      })
-      .catch((err) => {
-navigate('/movies')
-      });
-  }, [props.isLoggedIn]);
-
-
-  useEffect(() => {
     const buttonState = localStorage.getItem('checkBox');
     if (buttonState === 'true') {
       setCheckBox(true);
@@ -48,25 +35,9 @@ navigate('/movies')
       setCheckBox(false);
     }
   }, []);
-  const handleEditDeleteCardClick = (card) => {
-    api
-      .deleteMovies(card._id)
-      .then((res) => {
-        setSavedFilm((state) => state.filter((c) => c._id !== card._id));
-      })
-      .catch((err) => {
-        navigate("/error")
-      });
-  };
+ 
 
-  const handleEditLikeCardClick = (card) => {
-    api.savedMovies(card)
-      .then((newCard) => {
-        setSavedFilm([...savedFilms,newCard])})
-      .catch((err) => {
-        navigate("/error")
-      });
-  };
+  
   return (
     <>
       <Header
@@ -82,12 +53,12 @@ navigate('/movies')
         <MoviesCardList
         isUserData={props.isUserData}
           films={films}
-          savedMovies={savedFilms}
+          savedMovies={props.savedFilms}
           isLoading={isLoading}
           search={searchInputMovies}
           checkBox={checkBox}
-          handleEditDeleteCardClick={handleEditDeleteCardClick}
-          handleEditLikeCardClick={handleEditLikeCardClick}
+          handleEditDeleteCardClick={props.handleEditDeleteCardClick}
+          handleEditLikeCardClick={props.handleEditLikeCardClick}
           checkStorage={checkStorage}
           setSearchInput={setSearchInput}
         />

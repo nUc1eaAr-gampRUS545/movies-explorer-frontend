@@ -4,51 +4,40 @@ import SearchForm from "./SearchForm/SearchForm.jsx";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import React, { useState, useEffect } from "react";
-import {useNavigate } from "react-router-dom";
-export default function SavedMovies({...props}) {
-  const [films, setFilm] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-  const [searchInputMovies,setSearchInput]=useState('');
-  const [checkBox,setCheckBox]=useState(false);
-  const navigate=useNavigate();
+import { useNavigate } from "react-router-dom";
+export default function SavedMovies({ ...props }) {
+  const [searchInputMovies, setSearchInput] = useState("");
+  const [checkBox, setCheckBox] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    api.getSavedMovies().then((data) => {
-      
-      setFilm(...films,data);
-      setLoading(false)
-    }
-      ).catch((err)=>{
-        navigate("/error")
-        setLoading(false)
-      })
-  },[props.isLoggedIn]);
-  useEffect(() => {
-    const buttonState = localStorage.getItem('SMcheckBox');
-    if (buttonState === 'true') {
+    const buttonState = localStorage.getItem("SMcheckBox");
+    if (buttonState === "true") {
       setCheckBox(true);
     } else {
       setCheckBox(false);
     }
   }, []);
-  
-  const handleEditDeleteCardClick = (card) => {
-      api
-        .deleteMovies(card._id)
-        .then((res) => {
-          setFilm((state) => state.filter((c) => c._id !== card._id));
-        })
-        .catch((err) => {
-          navigate("/error")
-        });
-    };
+
+
   return (
     <>
-      <Header
-       {...props}
-      />
+      <Header {...props} />
       <main>
-      <SearchForm  searchInputMovies={(data)=>setSearchInput(data)} checkBox={checkBox} clickCheckBox={(data)=>setCheckBox(data)}/>
-      <MoviesCardList isUserData={props.isUserData} savedFilms={films} isLoading={isLoading} deleteMovies={handleEditDeleteCardClick} search={searchInputMovies} checkBox={checkBox}/></main>
+        <SearchForm
+          searchInputMovies={(data) => setSearchInput(data)}
+          checkBox={checkBox}
+          clickCheckBox={(data) => setCheckBox(data)}
+        />
+        <MoviesCardList
+          isUserData={props.isUserData}
+          savedFilms={props.savedFilms}
+          isLoading={props.isLoading}
+          deleteMovies={(data)=>props.handleEditDeleteCardClick(data)}
+          search={searchInputMovies}
+          checkBox={checkBox}
+        />
+      </main>
       <Footer />
     </>
   );

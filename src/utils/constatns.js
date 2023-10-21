@@ -6,7 +6,7 @@ export const textError = (message) => {
       return "При регистрации пользователя произошла ошибка.";
     }
   };
-export const savedFilmsId = [];
+
 
 export const viewErrorMessage = (arg1, arg2, arg3, arg4) => {
     if (arg1 === null) {
