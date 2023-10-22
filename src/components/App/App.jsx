@@ -44,7 +44,6 @@ function App() {
       })
       .catch((err) => {
         setLoading(false);
-        navigate("/movies");
       });
   }, [isLoggetIn]);
 
