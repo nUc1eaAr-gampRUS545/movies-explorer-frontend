@@ -26,7 +26,7 @@ export default function Login({ handleLogged, isLoggedIn }) {
         setDisable(false);
         localStorage.setItem("Movies", JSON.stringify([{}]));
         localStorage.setItem("shortMovies", JSON.stringify(JSON.stringify([{}])))
-        localStorage.setItem("lastReq", "a");
+        localStorage.setItem("lastReq", "История пуста");
       })
       .catch((err) => {
         setMessage(err);

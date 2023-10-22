@@ -202,11 +202,12 @@ input:focus {
   text-align: center;
   font-family: "Inter";
   transform: rotate(180deg);
-  font-size: 13px;
+  font-size: 8px;
+  background-size: 1.2;
   background-color: transparent;
   font-style: normal;
   border: 0;
-  padding: 0 0 0 10px;
+ 
   font-weight: 400;
   line-height: normal;
 }
