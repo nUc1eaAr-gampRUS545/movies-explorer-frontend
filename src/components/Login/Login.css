@@ -48,6 +48,18 @@
   margin: 0;
   margin-top: 179px;
 }
+.login__input-error {
+  color: #ee3465;
+  font-family: "Inter";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0px 0 0 0;
+}
+.login__saved-no-active{
+  background-color: #676d88;
+}
 .popup__saved:hover {
   opacity: 0.8;
 }

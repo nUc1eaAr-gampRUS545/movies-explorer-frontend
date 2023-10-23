@@ -3,29 +3,38 @@ import SearchForm from "./SearchForm/SearchForm.jsx";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { savedCard } from "../../utils/constatns";
-import apiSavedMovies from "../../utils/MainApi";
-export default function SavedMovies({ openMenu, closeMenu, flag,isLoggetIn }) {
-  const [films, setFilm] = useState([]);
+export default function SavedMovies({ ...props }) {
+  const [searchInputMovies, setSearchInput] = useState("");
+  const [checkBox, setCheckBox] = useState(false);
+
   useEffect(() => {
-    isLoggetIn &&
-    apiSavedMovies.getSavedMovies((data) => {
-      setFilm(data);
-    });
-  },[isLoggetIn]);
- 
+    const buttonState = localStorage.getItem("SMcheckBox");
+    if (buttonState === "true") {
+      setCheckBox(true);
+    } else {
+      setCheckBox(false);
+    }
+  }, []);
+
+
   return (
     <>
-      <Header
-        openMenu={openMenu}
-        closeMenu={closeMenu}
-        flag={flag}
-        isLoggetIn={isLoggetIn}
-      />
+      <Header {...props} />
       <main>
-      <SearchForm />
-      <MoviesCardList films={films}/></main>
+        <SearchForm
+          searchInputMovies={(data) => setSearchInput(data)}
+          checkBox={checkBox}
+          clickCheckBox={(data) => setCheckBox(data)}
+        />
+        <MoviesCardList
+          isUserData={props.isUserData}
+          savedFilms={props.savedFilms}
+          isLoading={props.isLoading}
+          deleteMovies={(data)=>props.handleEditDeleteCardClick(data)}
+          search={searchInputMovies}
+          checkBox={checkBox}
+        />
+      </main>
       <Footer />
     </>
   );

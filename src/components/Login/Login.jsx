@@ -1,46 +1,44 @@
 import "./Login.css";
 import React, { useState } from "react";
+import useInput from "../Validation/Validation";
 import { NavLink, useNavigate } from "react-router-dom";
 import UserAuthorization from "../../utils/userAuth";
-import Preloader from "../Movies/Preloader/Preloader";
+import { textError } from "../../utils/constatns";
 import Input from "../Input/Input";
-export default function Login({ handleLogged }) {
+export default function Login({ handleLogged, isLoggedIn }) {
   const navigate = useNavigate();
-  const [formValue, setFormValue] = React.useState({
-    email: "",
-    password: "",
-  });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValue({ ...formValue, [name]: value });
-  };
   const [message, setMessage] = useState("");
-  const textError = (message) => {
-    if (message === "Ошибка 401") {
-      return "Вы ввели неправильный логин или пароль.";
-    }
-    if (message === "Ошибка 400") {
-      return "При регистрации пользователя произошла ошибка.";
-    }
-  };
+  const [disable,setDisable]=useState(false)
+  let email = useInput("", { isEmpty: true, minLength: 6, isEmail: false });
+  let password = useInput("", { isEmpty: true, minLength: 3 });
+  let formObject = { email: email.formValue, password: password.formValue };
+
+ 
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    UserAuthorization.authorization(formValue)
+    setDisable(true)
+    UserAuthorization.authorization(formObject)
       .then((data) => {
-        console.log(data);
         handleLogged();
-        navigate("/");
         setMessage(data);
+        navigate("/movies");
+        setDisable(false);
+        localStorage.setItem("Movies", JSON.stringify([{}]));
+        localStorage.setItem("shortMovies", JSON.stringify(JSON.stringify([{}])))
+        localStorage.setItem("lastReq", "История пуста");
       })
       .catch((err) => {
         setMessage(err);
-        console.error(err);
+        setDisable(false);
       })
-      .finally(() => <Preloader />);
+      
   };
-  return (
+  return isLoggedIn ? navigate('/') : (
     <div className="login">
-      <div className="login__logo"></div>
+      <NavLink to="/">
+        <div className="login__logo"></div>
+      </NavLink>
       <div className="login__title">Рады видеть!</div>
       <form className="login__container" onSubmit={handleSubmit}>
         <p className="login__caption">E-mail</p>
@@ -48,18 +46,27 @@ export default function Login({ handleLogged }) {
           type="email"
           name="email"
           message={message}
-          onChange={handleChange}
-          value={formValue.email}
+          disabled={disable}
+          onChange={(e) => email.onChange(e.target.value)}
+          onBlur={(e) => email.onBlur(e)}
+          value={email.value}
         ></Input>
+        {email.isEmailError && email.value !== "" && (
+          <div className="login__input-error ">Неверная электронная почта</div>
+        )}
+
         <p className="login__caption">Пароль</p>
         <Input
           type="password"
           name="password"
           message={message}
-          value={formValue.password}
-          onChange={handleChange}
-          required
+          value={password.value}
+          disabled={disable}
+          onChange={(e) => password.onChange(e.target.value)}
         ></Input>
+        {password.minLengthError && email.value !== "" && (
+          <div className="login__input-error ">Неверный формат пороля</div>
+        )}
         <div
           className={
             message !== ""
@@ -69,7 +76,15 @@ export default function Login({ handleLogged }) {
         >
           {textError(message)}
         </div>
-        <button className="login__saved"  type="submit" >
+        <button
+          className={
+            email.inputValid && password.inputValid
+              ? "login__saved "
+              : "login__saved login__saved-no-active"
+          }
+          disabled={email.inputValid || password.inputValid ? false : true}
+          type="submit"
+        >
           Войти
         </button>
       </form>
@@ -80,5 +95,5 @@ export default function Login({ handleLogged }) {
         </NavLink>
       </div>
     </div>
-  );
+  )
 }

@@ -1,159 +1,30 @@
-export const user={
-    name:"Никита",
-    secondName:"Мутовин",
-    mail:"n-mutovin2003@mail.ru"
-}
-export const cards = [
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
+export const textError = (message) => {
+    if (message === "Ошибка 401") {
+      return "Вы ввели неправильный логин или пароль.";
+    }
+    if (message === "Ошибка 400") {
+      return "При регистрации пользователя произошла ошибка.";
+    }
+  };
 
-     {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    }, {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
-    },
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
+
+export const viewErrorMessage = (arg1, arg2, arg3, arg4) => {
+    if (arg1 === null) {
+      return;
     }
-    
-];
-export const  savedCard=[
-    {
-        name: "33 слова о дизайне",
-        photo:
-            "https://sun9-63.userapi.com/impg/yb3Tlw3SWrGnMmRRVYDfdtJzq1aqlVtORuKfrQ/HYsCBmqCsSA.jpg?size=960x1280&quality=96&sign=e4a2c8c3048048c312459b2b1e0dfd08&type=album",
-        time: "1ч33 минуты",
+    if (arg1 && arg2 && arg3 && arg4) {
+      return <div className="movies-eror">Ничего не найдено</div>;
     }
-]
+  };
+
+export const detectWindowWidth=(width,setNumberCard)=>{
+    if(width <1200 && width > 480){
+      setNumberCard(8)
+    }
+    if(width <480 ){
+      setNumberCard(5)
+    }
+    if(width> 1200){
+      setNumberCard(16)
+    }
+}

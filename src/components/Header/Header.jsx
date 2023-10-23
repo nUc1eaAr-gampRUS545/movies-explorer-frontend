@@ -1,8 +1,9 @@
 import "./Header.css";
 import { NavLink } from "react-router-dom";
 import Menu from "../Menu/Menu";
-export default function Header({isLoggetIn,closeMenu, openMenu,flag }) {
-  return !isLoggetIn ? (<>
+export default function Header({ isLoggedIn, closeMenu,openMenu,flag}) {
+  
+  return !isLoggedIn ? (<>
    
     <header className="header">
       <div className="header__container">
@@ -39,5 +40,5 @@ export default function Header({isLoggetIn,closeMenu, openMenu,flag }) {
             </NavLink>
       </div>
     </header>
-  </>);
+  </>)
 }

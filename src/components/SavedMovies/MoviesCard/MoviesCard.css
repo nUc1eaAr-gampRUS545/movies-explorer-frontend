@@ -82,3 +82,15 @@
     height: 168px;
   }
 }
+@media screen and (max-width: 480px) {
+  .card {
+    min-width: 300px;
+  }
+  .card__movie-time{
+    padding: 0px 0 0px 12px;
+  }
+  .card__photography {
+    width: 300px;
+    height: 168px;
+  }
+}
